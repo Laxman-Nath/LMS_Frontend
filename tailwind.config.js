@@ -3,7 +3,12 @@ export default {
   content: [ "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",],
   theme: {
-    extend: {},
+    extend: {
+      colors:{
+        primary:'rgb(5, 7, 28)',
+        secondary:'rgb(104, 105, 107)'
+      }
+    },
   },
   plugins: [],
 }

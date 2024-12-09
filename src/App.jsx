@@ -1,15 +1,31 @@
 
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { Dashboard } from './components/Dashboard/Dashboard'
 import './index.css'
+import { RootLayout } from './components/Root/RootLayout'
+import { Books } from './components/Books/Books'
+import { Home } from './components/Home/Home'
 
 function App() {
 
+const router=createBrowserRouter([{
+  path:"/",
+  element:<RootLayout/>,
+  children:[
+    {
+      index:true,
+      element:<Home/>
+    }
+    ,{
+      path:"/books",
+      element:<Books/>
+    }
+  ]
+}])
+
 
   return (
-    <>
-      <h1 className="text-3xl font-bold underline text-red-600">
-      Hello world!
-    </h1>
-    </>
+   <RouterProvider router={router}/>
   )
 }
 
