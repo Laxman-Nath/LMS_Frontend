@@ -1,32 +1,60 @@
-
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { Dashboard } from './components/Dashboard/Dashboard'
-import './index.css'
-import { RootLayout } from './components/Root/RootLayout'
-import { Books } from './components/Books/Books'
-import { Home } from './components/Home/Home'
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Dashboard } from "./components/Dashboard/Dashboard";
+import "./index.css";
+import { RootLayout } from "./components/Root/RootLayout";
+import { Books } from "./components/Books/Books";
+import { Home } from "./components/Home/Home";
+import { Students } from "./components/Students/Students";
+import { Teachers } from "./components/Teachers/Teachers";
+import { LoginForm } from "./components/Login/LoginForm";
+import { LoginPage } from "./components/Login/LoginPage";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      // staleTime: 60 * 1000,
+      staleTime: 5 * (60 * 1000), //5 minutes
+    },
+    devtools: {
+      log: "all", // This option enables verbose logging in the console
+    },
+  },
+});
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <RootLayout />,
+    children: [
+      {
+        index: true,
+        element: <Home />,
+      },
+      {
+        path: "/books",
+        element: <Books />,
+      },
+      {
+        path: "/students",
+        element: <Students />,
+      },
+      {
+        path: "/teachers",
+        element: <Teachers />,
+      },
+    ],
+  },
+  {
+    path: "/login",
+    element: <LoginPage />,
+  },
+]);
 
 function App() {
-
-const router=createBrowserRouter([{
-  path:"/",
-  element:<RootLayout/>,
-  children:[
-    {
-      index:true,
-      element:<Home/>
-    }
-    ,{
-      path:"/books",
-      element:<Books/>
-    }
-  ]
-}])
-
-
   return (
-   <RouterProvider router={router}/>
-  )
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
+  );
 }
 
-export default App
+export default App;

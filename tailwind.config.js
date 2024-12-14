@@ -6,7 +6,8 @@ export default {
     extend: {
       colors:{
         primary:'rgb(5, 7, 28)',
-        secondary:'rgb(104, 105, 107)'
+        secondary:'rgb(104, 105, 107)',
+        login:'rgb(224, 220, 220)'
       }
     },
   },
