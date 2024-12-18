@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom";
 import { Dashboard } from "./components/Dashboard/Dashboard";
 import "./index.css";
 import { RootLayout } from "./components/Root/RootLayout";
@@ -9,6 +9,10 @@ import { Teachers } from "./components/Teachers/Teachers";
 import { LoginForm } from "./components/Login/LoginForm";
 import { LoginPage } from "./components/Login/LoginPage";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Toaster } from "react-hot-toast";
+import Unauthorized from "./components/Unauthorized/Unauthorized";
+
+import { checkAuth } from "./utils/Token";
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -24,6 +28,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout />,
+    loader:checkAuth,
     children: [
       {
         index: true,
@@ -41,18 +46,39 @@ const router = createBrowserRouter([
         path: "/teachers",
         element: <Teachers />,
       },
+     
     ],
   },
   {
     path: "/login",
     element: <LoginPage />,
   },
+
+  {
+    path:"unauthorized",
+    element:<Unauthorized/>
+  }
+  // ,{
+  //   path:"logout",
+  //   element:<Logout/>
+  // }
 ]);
 
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <RouterProvider router={router} />
+      <Toaster
+        position="top-center"
+        toastOptions={{
+          error: {
+            duration: 5000,
+          },
+          success: {
+            duration: 3000,
+          },
+        }}
+      />
     </QueryClientProvider>
   );
 }

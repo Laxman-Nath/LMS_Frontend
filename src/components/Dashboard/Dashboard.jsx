@@ -7,26 +7,35 @@ import { SiBookstack } from "react-icons/si";
 import { RxAvatar } from "react-icons/rx";
 import { BsThreeDots } from "react-icons/bs";
 import { UseGetLoggedInUserApi } from "../../Queries/UseGetLoggedInUserApi";
+import { Spinner } from "../Spinner/Spinner";
+import { CiLogout } from "react-icons/ci";
+import { removeToken } from "../../utils/Token";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 export const Dashboard = () => {
   const [open, setOpen] = useState(true);
   const toggleSideBar = () => {
     setOpen(!open);
   };
+  const navigate = useNavigate();
 
-  const { user, isLoading, isError, error } = UseGetLoggedInUserApi();
+  const logout = () => {
+    removeToken();
+    window.location.reload();
+    navigate("/login", { replace: true });
+    toast.success("Successfully logged out!");
+  };
+  const { user, isPending, isError, error } = UseGetLoggedInUserApi();
   // const {firstName,lastName}=user;
-  if (isLoading) {
-    console.log("loading........");
+  if (isPending) {
+    return <Spinner />;
   }
   if (isError) {
     console.log(error);
   }
-  useEffect(() => {
-    // if(user)
-        console.log(user);
-  },[user]);
-
-  const isUserPresent=user?true:false;
+  console.log(user);
+  const isUserPresent = user;
+  const isLibrarian = isUserPresent && user.roleName === "ROLE_LIBRARIAN";
   return (
     <>
       <div
@@ -44,30 +53,56 @@ export const Dashboard = () => {
         <h1 className="text-white text-center">LMS</h1>
         {open && (
           <ul className="text-white mt-4 px-4 text-1xl">
-            <DashboardItem icon={<FaHome />} title="Home" path="/" />
-           {isUserPresent && user.roleName=="ROLE_LIBRARIAN" && <DashboardItem
-              icon={<IoPeopleSharp />}
-              title="Students"
-              path="students"
-            /> }
-          {isUserPresent && user.roleName=="ROLE_LIBRARIAN" &&  <DashboardItem
-              icon={<IoPeopleSharp />}
-              title="Teachers"
-              path="teachers"
+            <DashboardItem
+              icon={<FaHome />}
+              title="Home"
+              path="/"
+              role={user && user.roleName}
             />
-          }
+            {isLibrarian && (
+              <DashboardItem
+                icon={<IoPeopleSharp />}
+                title="Students"
+                path="students"
+              />
+            )}
+
+            {isLibrarian && (
+              <DashboardItem
+                icon={<IoPeopleSharp />}
+                title="Teachers"
+                path="teachers"
+                role={user && user.roleName}
+              />
+            )}
             <DashboardItem icon={<SiBookstack />} title="Books" path="books" />
+
+            <li
+              className="flex justify-start mb-4 text-center cursor-pointer hover:text-gray-400"
+              onClick={logout}
+            >
+              <CiLogout className="text-3xl mr-2" />
+              <span className=" text-2xl hover:scale-90 text-red-500 rounded-md transition-all duration-1000 ease-in-out">
+                Logout
+              </span>
+            </li>
           </ul>
         )}
 
         {open && (
           <div className="flex   items-center absolute bottom-5 text-white w-full">
             <div>
-              <RxAvatar size={60}/>
+              <RxAvatar size={60} />
             </div>
             <div className="flex flex-col gap-0">
-              <span className={"lg:text-3xl md:text-2xl sm:text-1xl m-0"}>{isUserPresent && user.firstName} {isUserPresent && user.lastName}</span>
-              <span className="text-1xl m-0 text-center">{isUserPresent && user.firstName} {isUserPresent && user.lastName}</span>
+              <span className={"lg:text-3xl md:text-2xl sm:text-1xl m-0"}>
+                {isUserPresent && user.firstName}{" "}
+                {isUserPresent && user.lastName}
+              </span>
+              <span className="text-1xl m-0 text-center">
+                {isUserPresent && user.firstName}{" "}
+                {isUserPresent && user.lastName}
+              </span>
             </div>
             <div className="absolute right-2 hover:cursor-pointer">
               <BsThreeDots size={30} />
