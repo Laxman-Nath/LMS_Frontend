@@ -13,6 +13,8 @@ import { Toaster } from "react-hot-toast";
 import Unauthorized from "./components/Unauthorized/Unauthorized";
 
 import { checkAuth } from "./utils/Token";
+import { AddBook } from "./components/Books/AddBook";
+import { AddStudent } from "./components/Students/AddStudent";
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -46,6 +48,14 @@ const router = createBrowserRouter([
         path: "/teachers",
         element: <Teachers />,
       },
+      {
+        path:"/addbook",
+        element:<AddBook/>
+      },
+      {
+        path:"/addstudent",
+        element:<AddStudent/>
+      }
      
     ],
   },

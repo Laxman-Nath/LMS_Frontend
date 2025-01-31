@@ -12,7 +12,7 @@ export const RootLayout = () => {
       <div className="z-30">
         <Dashboard />
       </div>
-      <div className="bg-secondary h-screen w-screen text-center z-[]  text-white flex flex-wrap justify-center">
+      <div className="bg-login h-screen w-screen text-center z-[23]  flex flex-wrap justify-center items-center">
         <Outlet />
       </div>
     </div>

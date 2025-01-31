@@ -12,6 +12,9 @@ import { CiLogout } from "react-icons/ci";
 import { removeToken } from "../../utils/Token";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import { IoMdAdd } from "react-icons/io";
+import { MdOutlinePersonAdd } from "react-icons/md";
+
 export const Dashboard = () => {
   const [open, setOpen] = useState(true);
   const toggleSideBar = () => {
@@ -21,9 +24,13 @@ export const Dashboard = () => {
 
   const logout = () => {
     removeToken();
-    window.location.reload();
+   
     navigate("/login", { replace: true });
     toast.success("Successfully logged out!");
+    setTimeout(()=>{
+      window.location.reload();
+    },2000)
+    
   };
   const { user, isPending, isError, error } = UseGetLoggedInUserApi();
   // const {firstName,lastName}=user;
@@ -75,7 +82,26 @@ export const Dashboard = () => {
                 role={user && user.roleName}
               />
             )}
+
+            {isLibrarian && (
+              <DashboardItem
+                icon={<IoMdAdd/>}
+                title="Add Book"
+                path="addbook"
+                role={user && user.roleName}
+              />
+            )}
             <DashboardItem icon={<SiBookstack />} title="Books" path="books" />
+            
+            {isLibrarian && (
+              <DashboardItem
+                icon={<MdOutlinePersonAdd/>}
+                title="Add Student"
+                path="addstudent"
+                role={user && user.roleName}
+              />
+            )}
+            <DashboardItem icon={<IoPeopleSharp />} title="Students" path="students" />
 
             <li
               className="flex justify-start mb-4 text-center cursor-pointer hover:text-gray-400"

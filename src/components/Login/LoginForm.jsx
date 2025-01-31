@@ -3,8 +3,10 @@ import { SubmitButton } from "../Buttons/SubmitButton";
 import { Input } from "./Input";
 import { useForm } from "react-hook-form";
 import { UseLoginApi } from "../../Queries/UseLoginApi";
+import { useQueryClient } from "@tanstack/react-query";
 export const LoginForm = () => {
   const { register, handleSubmit, formState, getValues } = useForm();
+  const queryClient=useQueryClient();
   const{login,isPending,isError}=UseLoginApi();
   const { errors } = formState;
   const [showPassword, setShowPassword] = useState(false);
@@ -12,6 +14,7 @@ export const LoginForm = () => {
     setShowPassword((showPassword) => !showPassword);
   };
   const onSubmit = (data) => {
+  
     login(data);
     console.log(data);
   };
@@ -22,9 +25,11 @@ export const LoginForm = () => {
     <>
       <form
         onSubmit={handleSubmit(onSubmit, onError)}
-        className="mt-10 shadow-2xl p-4 w-[50%]"
+        className="mt-10 shadow-2xl p-4 w-[50%] bg-primary rounded-md"
       >
-        <h1 className="font-bold text-5xl text-center ">Login form</h1>
+       <h1 className="font-bold text-5xl text-center rounded-md text-white ">
+            LOGIN
+          </h1>
         <hr className="border-t border-gray-300 w-full h-2" />
         <Input
           type="email"
