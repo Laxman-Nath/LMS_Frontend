@@ -1,33 +1,39 @@
+import { useEffect, useState } from "react";
 import { Navigate, NavLink, useLocation } from "react-router-dom";
+import { Spinner } from "../../uiutils/Spinner";
 
 export const DashboardItem = ({ icon, title, path, role }) => {
   const location = useLocation();
   const userRole = role || "";
 
-  // console.log(location.pathname);
+  
+  // const [loading, setIsLoading] = useState(true);
 
-  // console.log(
-  //   "first",
-  //   location.pathname === "/students" || location.pathname === "/teachers"
-  // );
-  // console.log("second", userRole !== "ROLE_LIBRARIAN");
+  
+  // const restrictedPaths = ["/students", "/teachers", "/addstudent", "/addteacher", "/addbook"];
+  // const isNotAccessible = userRole !== "ROLE_LIBRARIAN" && restrictedPaths.includes(location.pathname);
 
- console.log("Role",role);
-  const isNotAccessible =
-   role && userRole !== "ROLE_LIBRARIAN" &&
-    (location.pathname === "/students" || location.pathname === "/teachers");
+  
+  // useEffect(() => {
+  //   const timer = setTimeout(() => setIsLoading(false), 500); 
+  //   return () => clearTimeout(timer); 
+  // }, []);
 
-    console.log(isNotAccessible);
+  
+  // if (loading) {
+  //   return <Spinner />;
+  // }
 
-    if (isNotAccessible) {
-      return <Navigate to="/unauthorized" replace />;
-    }
-    
+  
+  // if (isNotAccessible) {
+  //   return <Navigate to="/unauthorized" replace />;
+  // }
+
   return (
     <li className="flex justify-start mb-4 text-center cursor-pointer hover:text-gray-400">
       <span className="text-3xl mr-2">{icon}</span>
       <NavLink
-        to={ path }
+        to={path}
         className={({ isActive }) =>
           `text-2xl ${
             isActive

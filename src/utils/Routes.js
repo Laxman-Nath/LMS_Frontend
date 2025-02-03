@@ -12,3 +12,12 @@ export const UPDATE_BOOK = BASE_URL + LIBRARIAN + "/updatebook";
 export const DELETE_BOOK = BASE_URL + LIBRARIAN + "/deletebook";
 
 export const ADD_STUDENT = BASE_URL + LIBRARIAN + "/addstudent";
+export const  VIEW_ALL_STUDENTS = BASE_URL + LIBRARIAN + "/getallstudents";
+export const UPDATE_STUDENT = BASE_URL + LIBRARIAN + "/updatestudent";
+export const DELETE_STUDENT = BASE_URL + LIBRARIAN + "/deletestudent";
+
+export const ADD_TEACHER = BASE_URL + LIBRARIAN + "/addteacher";
+export const  VIEW_ALL_TEACHERS = BASE_URL + LIBRARIAN + "/getallteachers";
+	export const  UPDATE_TEACHER = BASE_URL + LIBRARIAN + "/updateteacher";
+	export const  DELETE_TEACHER = BASE_URL + LIBRARIAN + "/deleteteacher";
+

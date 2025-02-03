@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { SubmitButton } from "../Buttons/SubmitButton";
-import { Input } from "./Input";
+import { SubmitButton } from "../../uiutils/SubmitButton";
+import { Input } from "../../uiutils/Input";
 import { useForm } from "react-hook-form";
 import { UseLoginApi } from "../../Queries/UseLoginApi";
 import { useQueryClient } from "@tanstack/react-query";

@@ -6,15 +6,19 @@ import { Books } from "./components/Books/Books";
 import { Home } from "./components/Home/Home";
 import { Students } from "./components/Students/Students";
 import { Teachers } from "./components/Teachers/Teachers";
-import { LoginForm } from "./components/Login/LoginForm";
+
 import { LoginPage } from "./components/Login/LoginPage";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "react-hot-toast";
-import Unauthorized from "./components/Unauthorized/Unauthorized";
+import Unauthorized from "./uiutils/Unauthorized";
 
 import { checkAuth } from "./utils/Token";
 import { AddBook } from "./components/Books/AddBook";
 import { AddStudent } from "./components/Students/AddStudent";
+import { AddTeacher } from "./components/Teachers/AddTeacher";
+import ProtectedRoute from "./utils/ProtectedRoute";
+import { AuthProvider } from "./context/AuthProvider";
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -42,19 +46,29 @@ const router = createBrowserRouter([
       },
       {
         path: "/students",
-        element: <Students />,
+        // element: <Students />,
+        element:( <ProtectedRoute element={<Students />} allowedRoles={["ROLE_LIBRARIAN"]} />),
       },
       {
         path: "/teachers",
-        element: <Teachers />,
+        // element: <Teachers />,
+        element:( <ProtectedRoute element={<Teachers />} allowedRoles={["ROLE_LIBRARIAN"]} />),
       },
       {
         path:"/addbook",
-        element:<AddBook/>
+        // element:<AddBook/>
+        element:( <ProtectedRoute element={<AddBook />} allowedRoles={["ROLE_LIBRARIAN"]} />),
       },
       {
         path:"/addstudent",
-        element:<AddStudent/>
+        // element:<AddStudent/>
+        element:( <ProtectedRoute element={<AddStudent />} allowedRoles={["ROLE_LIBRARIAN"]} />),
+      }
+      ,
+      {
+        path:"/addteacher",
+        // element:<AddTeacher/>
+        element:( <ProtectedRoute element={<AddTeacher />} allowedRoles={["ROLE_LIBRARIAN"]} />),
       }
      
     ],
@@ -75,8 +89,10 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
+  
   return (
     <QueryClientProvider client={queryClient}>
+      {/* <AuthProvider> */}
       <RouterProvider router={router} />
       <Toaster
         position="top-center"
@@ -89,6 +105,7 @@ function App() {
           },
         }}
       />
+      {/* </AuthProvider> */}
     </QueryClientProvider>
   );
 }

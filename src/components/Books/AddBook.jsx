@@ -1,15 +1,16 @@
 import { useForm } from "react-hook-form";
-import { Input } from "../Login/Input";
-import { SubmitButton } from "../Buttons/SubmitButton";
-import { UseAddBook } from "../../Queries/UseAddBook";
-import { Spinner } from "../Spinner/Spinner";
+import { Input } from "../../uiutils/Input";
+import { SubmitButton } from "../../uiutils/SubmitButton";
+
+import { Spinner } from "../../uiutils/Spinner";
 import { ADD_BOOK } from "../../utils/Routes";
 import { uploadToCloudinary } from "../../utils/uploadToCloudinary";
 import { useState } from "react";
+import { useAddBook } from "../../Queries/Book/useAddBook";
 
 export const AddBook = () => {
   const [image, setImage] = useState("");
-  const { addBook, isError, isPending } = UseAddBook();
+  const { addBook, isError, isPending } = useAddBook();
   const { register, handleSubmit, formState, getValues, setValue } = useForm();
   if (isError) {
     console.log("error");

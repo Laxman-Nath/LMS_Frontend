@@ -1,3 +1,18 @@
+import { useGetAllTeachers } from "../../Queries/Teacher/useGetAllTeachers";
+import { Spinner } from "../../uiutils/Spinner";
+import { TeacherTable } from "./TeacherTable"
+
 export const Teachers=()=>{
-    return <h1>This is teachers page</h1>
+     const { teachers, isPending, isError, error } = useGetAllTeachers();
+         if (isPending) {
+            return <Spinner />;
+          }
+          console.log("Teachers from teachers", teachers);
+        
+          if (isError) {
+            console.log(error);
+          }
+    return (
+        <TeacherTable teachers={teachers}/>
+    )
 }

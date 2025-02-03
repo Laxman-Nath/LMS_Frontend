@@ -7,13 +7,17 @@ import { SiBookstack } from "react-icons/si";
 import { RxAvatar } from "react-icons/rx";
 import { BsThreeDots } from "react-icons/bs";
 import { UseGetLoggedInUserApi } from "../../Queries/UseGetLoggedInUserApi";
-import { Spinner } from "../Spinner/Spinner";
+import { Spinner } from "../../uiutils/Spinner";
 import { CiLogout } from "react-icons/ci";
 import { removeToken } from "../../utils/Token";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { IoMdAdd } from "react-icons/io";
 import { MdOutlinePersonAdd } from "react-icons/md";
+import { GiTeacher } from "react-icons/gi";
+import { FaChalkboardTeacher } from "react-icons/fa";
+import { useAuth } from "../../context/AuthProvider";
+
 
 export const Dashboard = () => {
   const [open, setOpen] = useState(true);
@@ -24,25 +28,25 @@ export const Dashboard = () => {
 
   const logout = () => {
     removeToken();
-   
+
     navigate("/login", { replace: true });
     toast.success("Successfully logged out!");
-    setTimeout(()=>{
+    setTimeout(() => {
       window.location.reload();
-    },2000)
-    
+    }, 2000);
   };
   const { user, isPending, isError, error } = UseGetLoggedInUserApi();
   // const {firstName,lastName}=user;
+  const { userRole } = useAuth();
   if (isPending) {
     return <Spinner />;
   }
   if (isError) {
     console.log(error);
   }
-  console.log(user);
+  // console.log(user);
   const isUserPresent = user;
-  const isLibrarian = isUserPresent && user.roleName === "ROLE_LIBRARIAN";
+  const isLibrarian = userRole && userRole === "ROLE_LIBRARIAN";
   return (
     <>
       <div
@@ -66,42 +70,46 @@ export const Dashboard = () => {
               path="/"
               role={user && user.roleName}
             />
-            {isLibrarian && (
-              <DashboardItem
-                icon={<IoPeopleSharp />}
-                title="Students"
-                path="students"
-              />
-            )}
 
             {isLibrarian && (
               <DashboardItem
-                icon={<IoPeopleSharp />}
-                title="Teachers"
-                path="teachers"
-                role={user && user.roleName}
-              />
-            )}
-
-            {isLibrarian && (
-              <DashboardItem
-                icon={<IoMdAdd/>}
+                icon={<IoMdAdd />}
                 title="Add Book"
                 path="addbook"
                 role={user && user.roleName}
               />
             )}
             <DashboardItem icon={<SiBookstack />} title="Books" path="books" />
-            
+
             {isLibrarian && (
               <DashboardItem
-                icon={<MdOutlinePersonAdd/>}
+                icon={<MdOutlinePersonAdd />}
                 title="Add Student"
                 path="addstudent"
                 role={user && user.roleName}
               />
             )}
-            <DashboardItem icon={<IoPeopleSharp />} title="Students" path="students" />
+            {isLibrarian &&(
+            <DashboardItem
+              icon={<IoPeopleSharp />}
+              title="Students"
+              path="students"
+            />)}
+
+            {isLibrarian && (
+              <DashboardItem
+                icon={<FaChalkboardTeacher />}
+                title="Add Teacher"
+                path="addteacher"
+              />
+            )}
+            {isLibrarian && (
+              <DashboardItem
+                icon={<GiTeacher />}
+                title="Teachers"
+                path="teachers"
+              />
+            )}
 
             <li
               className="flex justify-start mb-4 text-center cursor-pointer hover:text-gray-400"

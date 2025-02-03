@@ -1,7 +1,10 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { viewAllBooks } from "../ApisCalls/ViewAllBooks";
 import toast from "react-hot-toast";
 import { useSearchParams } from "react-router-dom";
+// import { VIEW_ALL_BOOKS } from "../utils/Routes";
+// import { getAllApi } from "../ApisCalls/getAllApi";
+import { VIEW_ALL_BOOKS } from "../../utils/Routes";
+import { getAllApi } from "../../ApisCalls/getAllApi";
 
 export const useViewAllBooks = () => {
   // console.log("Params",params);
@@ -18,7 +21,7 @@ export const useViewAllBooks = () => {
     isError,
     error,
   } = useQuery({
-    queryFn:()=> viewAllBooks({pageNumber}),
+    queryFn:()=> getAllApi({pageNumber,path:`${VIEW_ALL_BOOKS}?pageSize=5&sortingOrder=descending&sortParameter=addedDate`}),
     queryKey: ['books',pageNumber],
     onError: (error) => {
       toast.error(error.message);
@@ -28,14 +31,14 @@ export const useViewAllBooks = () => {
   if(books && pageNumber>1){
     queryClient.prefetchQuery({
       queryKey:['books',pageNumber],
-      queryFn:()=>viewAllBooks({pageNumber:pageNumber-1})
+      queryFn:()=>getAllApi({pageNumber:pageNumber-1,path:`${VIEW_ALL_BOOKS}?pageSize=5&sortingOrder=descending&sortParameter=addedDate`})
     
     })
   }
   if(books && pageNumber < books.totalPage){
     queryClient.prefetchQuery({
       queryKey:[books,pageNumber],
-      queryFn:()=>viewAllBooks({pageNumber:pageNumber+1})
+      queryFn:()=>getAllApi({pageNumber:pageNumber+1,path:`${VIEW_ALL_BOOKS}?pageSize=5&sortingOrder=descending&sortParameter=addedDate`})
     
     })
   }

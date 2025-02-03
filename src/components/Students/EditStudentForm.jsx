@@ -1,23 +1,28 @@
-import { useForm } from "react-hook-form";
-import { Input } from "../../uiutils/Input";
-import { SubmitButton } from "../../uiutils/SubmitButton";
-
-import { Spinner } from "../../uiutils/Spinner";
-import {  ADD_STUDENT } from "../../utils/Routes";
-import { uploadToCloudinary } from "../../utils/uploadToCloudinary";
+/* eslint-disable react/prop-types */
 import { useState } from "react";
+
+import { useForm } from "react-hook-form";
+import { Spinner } from "../../uiutils/Spinner";
+import { uploadToCloudinary } from "../../utils/uploadToCloudinary";
+
 import { RadioInput } from "../../uiutils/RadioInput";
 import { FileInput } from "../../uiutils/FileInput";
-import { useAddStudent } from "../../Queries/Student/useAddStudent";
+import { HiXMark } from "react-icons/hi2";
+import { SubmitButton } from "../../uiutils/SubmitButton";
+import { Input } from "../../uiutils/Input";
+import { useUpdateStudent } from "../../Queries/Student/useUpdateStudent";
+import { UPDATE_STUDENT } from "../../utils/Routes";
 
-export const AddStudent = () => {
+
+export const EditStudentForm = ({ student, onClick }) => {
   const [image, setImage] = useState("");
-  const { addStudent, isError, isPending } = useAddStudent();
+  const { updateStudent, isError, isPending } = useUpdateStudent();
   const [isUploading, setIsUploading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const togglePasswordVisibility = () => {
     setShowPassword((showPassword) => !showPassword);
   };
+  console.log("Student id:",student.id);
   const {
     register,
     handleSubmit,
@@ -25,7 +30,22 @@ export const AddStudent = () => {
     getValues,
     setValue,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues:{
+        firstName:student?.firstName,
+        lastName:student?.lastName,
+        email:student?.email,
+        address:student?.address,
+        gender:student?.gender,
+        password:student?.password,
+        confirmPassword:student?.confirmPassword,
+        profileImage:student?.profileImage,
+        rollNo:student?.rollNo,
+        year:student?.year,
+        semester:student?.semester,
+        joinedDate:student?.joinedDate
+    }
+  });
   if (isError) {
     console.log("error");
   }
@@ -56,7 +76,7 @@ export const AddStudent = () => {
     console.log("Before", data.bookImage);
     data.profileImage = image;
     console.log("After", data.bookImage);
-    addStudent({ data: data, path: ADD_STUDENT });
+    updateStudent({ data: data, path: `${UPDATE_STUDENT}?studentId=${student.id}` });
     console.log(data);
   };
   const onError = (error) => {
@@ -64,13 +84,19 @@ export const AddStudent = () => {
   };
   return (
     <>
-      <div className="w-screen h-screen flex items-center justify-center">
+      <div className="w-screen h-screen flex items-center justify-center mt-4">
         <form
           onSubmit={handleSubmit(onSubmit, onError)}
           className=" shadow-2xl shadow-white p-4 w-[40%]  bg-primary rounded-md flex flex-col justify-center text-white"
         >
-          <h1 className="font-bold text-5xl text-center rounded-md text-white ">
-            Add Student
+          <button
+            className=" text-white border-none mt-2 ml-0 rounded-sm translate-x-2 transition-all duration-200 "
+            onClick={onClick}
+          >
+            <HiXMark className="w-8 h-8 text-white hover:text-gray-900" />
+          </button>
+          <h1 className="font-bold text-5xl text-center rounded-md text-green-500">
+            Update Student
           </h1>
           <hr className="border-t border-gray-300 w-full h-2" />
           <div className="grid grid-cols-2 gap-2">
@@ -126,7 +152,13 @@ export const AddStudent = () => {
               }}
             />
           </div>
-
+          <div className="text-center flex flex-col justify-center items-center mt-1">
+          <h1 className="text-2xl">Old Image:</h1>
+          <img
+            src={student.profileImage}
+            className="w-20 h-20 object-cover rounded "
+          />
+        </div>
           <div className="grid grid-cols-2 gap-2">
             <RadioInput
               inputs={[
@@ -143,7 +175,7 @@ export const AddStudent = () => {
             />
             <FileInput
               name="profileImage"
-              label="Profile Image"
+              label="Change Image"
               id="profileImage"
               error={!image && "This field is required"}
               register={{
@@ -177,7 +209,6 @@ export const AddStudent = () => {
                 }),
               }}
             />
-            
           </div>
 
           <div className="grid grid-cols-2 gap-2">
@@ -240,7 +271,7 @@ export const AddStudent = () => {
             />
           </div>
 
-          <SubmitButton>Add</SubmitButton>
+          <SubmitButton>Update</SubmitButton>
         </form>
       </div>
     </>

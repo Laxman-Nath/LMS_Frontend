@@ -1,23 +1,27 @@
-import { useForm } from "react-hook-form";
-import { Input } from "../../uiutils/Input";
-import { SubmitButton } from "../../uiutils/SubmitButton";
-
-import { Spinner } from "../../uiutils/Spinner";
-import {  ADD_STUDENT } from "../../utils/Routes";
-import { uploadToCloudinary } from "../../utils/uploadToCloudinary";
+/* eslint-disable react/prop-types */
 import { useState } from "react";
+
+import { useForm } from "react-hook-form";
+import { Spinner } from "../../uiutils/Spinner";
+import { uploadToCloudinary } from "../../utils/uploadToCloudinary";
+
 import { RadioInput } from "../../uiutils/RadioInput";
 import { FileInput } from "../../uiutils/FileInput";
-import { useAddStudent } from "../../Queries/Student/useAddStudent";
+import { HiXMark } from "react-icons/hi2";
+import { SubmitButton } from "../../uiutils/SubmitButton";
+import { Input } from "../../uiutils/Input";
+import {  UPDATE_TEACHER } from "../../utils/Routes";
+import { useUpdateTeacher } from "../../Queries/Teacher/useUpdateTeacher";
 
-export const AddStudent = () => {
+export const EditTeacherForm = ({ teacher, onClick }) => {
   const [image, setImage] = useState("");
-  const { addStudent, isError, isPending } = useAddStudent();
+  const { updateTeacher, isError, isPending } = useUpdateTeacher();
   const [isUploading, setIsUploading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const togglePasswordVisibility = () => {
     setShowPassword((showPassword) => !showPassword);
   };
+  console.log("Teacher id:", teacher.id);
   const {
     register,
     handleSubmit,
@@ -25,7 +29,20 @@ export const AddStudent = () => {
     getValues,
     setValue,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      firstName: teacher?.firstName,
+      lastName: teacher?.lastName,
+      email: teacher?.email,
+      address: teacher?.address,
+      gender: teacher?.gender,
+      password: teacher?.password,
+      confirmPassword: teacher?.confirmPassword,
+      profileImage: teacher?.profileImage,
+
+      joinedDate: teacher?.joinedDate,
+    },
+  });
   if (isError) {
     console.log("error");
   }
@@ -53,10 +70,14 @@ export const AddStudent = () => {
       console.log("image has not been uploaded yet");
       return;
     }
-    console.log("Before", data.bookImage);
+    console.log("Before", data.ProfileImage);
+    console.log("Image:",image);
     data.profileImage = image;
-    console.log("After", data.bookImage);
-    addStudent({ data: data, path: ADD_STUDENT });
+    console.log("After", data.ProfileImage);
+    updateTeacher({
+      data: data,
+      path: `${UPDATE_TEACHER}?teacherId=${teacher.id}`,
+    });
     console.log(data);
   };
   const onError = (error) => {
@@ -64,13 +85,19 @@ export const AddStudent = () => {
   };
   return (
     <>
-      <div className="w-screen h-screen flex items-center justify-center">
+      <div className="w-screen h-screen flex items-center justify-center mt-4">
         <form
           onSubmit={handleSubmit(onSubmit, onError)}
           className=" shadow-2xl shadow-white p-4 w-[40%]  bg-primary rounded-md flex flex-col justify-center text-white"
         >
-          <h1 className="font-bold text-5xl text-center rounded-md text-white ">
-            Add Student
+          <button
+            className=" text-white border-none mt-2 ml-0 rounded-sm translate-x-2 transition-all duration-200 "
+            onClick={onClick}
+          >
+            <HiXMark className="w-8 h-8 text-white hover:text-gray-900" />
+          </button>
+          <h1 className="font-bold text-5xl text-center rounded-md text-green-500">
+            Update Teacher
           </h1>
           <hr className="border-t border-gray-300 w-full h-2" />
           <div className="grid grid-cols-2 gap-2">
@@ -126,7 +153,13 @@ export const AddStudent = () => {
               }}
             />
           </div>
-
+          <div className="text-center flex flex-col justify-center items-center mt-1">
+            <h1 className="text-2xl">Old Image:</h1>
+            <img
+              src={teacher.profileImage}
+              className="w-20 h-20 object-cover rounded "
+            />
+          </div>
           <div className="grid grid-cols-2 gap-2">
             <RadioInput
               inputs={[
@@ -143,7 +176,7 @@ export const AddStudent = () => {
             />
             <FileInput
               name="profileImage"
-              label="Profile Image"
+              label="Change Image"
               id="profileImage"
               error={!image && "This field is required"}
               register={{
@@ -153,60 +186,18 @@ export const AddStudent = () => {
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-2">
-            <Input
-              type="number"
-              name="rollNo"
-              label="Roll No"
-              id="rollNo"
-              register={{
-                ...register("rollNo", {
-                  required: "Roll No is required",
-                }),
-              }}
-            />
-            <Input
-              type="date"
-              name="joinedDate"
-              label="Joined Date"
-              id="joinedDate"
-              error={errors.joinedDate}
-              register={{
-                ...register("joinedDate", {
-                  required: "Joined Date is required",
-                }),
-              }}
-            />
-            
-          </div>
-
-          <div className="grid grid-cols-2 gap-2">
-            <Input
-              type="text"
-              name="year"
-              label="Year"
-              id="year"
-              error={errors.address}
-              register={{
-                ...register("year", {
-                  required: "Year is required",
-                }),
-              }}
-            />
-
-            <Input
-              type="text"
-              name="semester"
-              label="Semester"
-              id="semester"
-              error={errors.semester}
-              register={{
-                ...register("semester", {
-                  required: "Semester is required",
-                }),
-              }}
-            />
-          </div>
+          <Input
+            type="date"
+            name="joinedDate"
+            label="Joined Date"
+            id="joinedDate"
+            error={errors.joinedDate}
+            register={{
+              ...register("joinedDate", {
+                required: "Joined Date is required",
+              }),
+            }}
+          />
 
           <div className="grid grid-cols-2 gap-2">
             <Input
@@ -240,7 +231,7 @@ export const AddStudent = () => {
             />
           </div>
 
-          <SubmitButton>Add</SubmitButton>
+          <SubmitButton>Update</SubmitButton>
         </form>
       </div>
     </>

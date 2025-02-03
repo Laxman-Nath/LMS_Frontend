@@ -1,14 +1,14 @@
 import { useState } from "react";
 
-import { EditDeleteButton } from "../Buttons/EditDeleteButton";
+import { EditDeleteButton } from "../../uiutils/EditDeleteButton";
 import { EditBookForm } from "./EditBookForm";
-import { Modal } from "../../utils/Modal";
-import { useGetBookById } from "../../Queries/useGetBookById";
+import { Modal } from "../../uiutils/Modal";
 import { useSearchParams } from "react-router-dom";
-import { Spinner } from "../Spinner/Spinner";
-import { useDeleteBook } from "../../Queries/useDeleteBook";
+
+
 import { DELETE_BOOK } from "../../utils/Routes";
 import { useQueryClient } from "@tanstack/react-query";
+import { useDeleteBook } from "../../Queries/Book/useDeleteBook";
 
 /* eslint-disable react/prop-types */
 export const BookTableBody = ({ books, columnName }) => {

@@ -1,6 +1,6 @@
 import { Outlet, useNavigation } from "react-router-dom";
 import { Dashboard } from "../Dashboard/Dashboard";
-import { Spinner } from "../Spinner/Spinner";
+
 
 export const RootLayout = () => {
   // const navigation=useNavigation();
