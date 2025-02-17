@@ -3,16 +3,19 @@ import { Input } from "../../uiutils/Input";
 import { SubmitButton } from "../../uiutils/SubmitButton";
 
 import { Spinner } from "../../uiutils/Spinner";
-import {  ADD_STUDENT } from "../../utils/Routes";
+import { ADD_STUDENT } from "../../utils/Routes";
 import { uploadToCloudinary } from "../../utils/uploadToCloudinary";
 import { useState } from "react";
 import { RadioInput } from "../../uiutils/RadioInput";
 import { FileInput } from "../../uiutils/FileInput";
 import { useAddStudent } from "../../Queries/Student/useAddStudent";
+import { useGetAllDepts } from "../../Queries/Department/useGetAllDepts";
+import { SelectInput } from "../../uiutils/SelectInput";
 
 export const AddStudent = () => {
   const [image, setImage] = useState("");
-  const { addStudent, isError, isPending } = useAddStudent();
+  const { addStudent } = useAddStudent();
+  const { depts, isError, isPending } = useGetAllDepts();
   const [isUploading, setIsUploading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const togglePasswordVisibility = () => {
@@ -177,7 +180,6 @@ export const AddStudent = () => {
                 }),
               }}
             />
-            
           </div>
 
           <div className="grid grid-cols-2 gap-2">
@@ -207,7 +209,16 @@ export const AddStudent = () => {
               }}
             />
           </div>
-
+          <SelectInput
+            name="departmentName"
+            label="Department Name"
+            depts={depts.data}
+            register={{
+              ...register("departmentName", {
+                required: "Department name is required",
+              }),
+            }}
+          />
           <div className="grid grid-cols-2 gap-2">
             <Input
               type="password"

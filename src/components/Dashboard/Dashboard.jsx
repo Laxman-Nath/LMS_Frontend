@@ -18,6 +18,8 @@ import { GiTeacher } from "react-icons/gi";
 import { FaChalkboardTeacher } from "react-icons/fa";
 import { useAuth } from "../../context/AuthProvider";
 
+import { FcDepartment } from "react-icons/fc";
+
 
 export const Dashboard = () => {
   const [open, setOpen] = useState(true);
@@ -108,6 +110,20 @@ export const Dashboard = () => {
                 icon={<GiTeacher />}
                 title="Teachers"
                 path="teachers"
+              />
+            )}
+            {isLibrarian && (
+              <DashboardItem
+                icon={<IoMdAdd />}
+                title="Add Department"
+                path="adddepartment"
+              />
+            )}
+            {isLibrarian && (
+              <DashboardItem
+                icon={<FcDepartment />}
+                title="Departments"
+                path="departments"
               />
             )}
 

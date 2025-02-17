@@ -18,6 +18,8 @@ import { AddStudent } from "./components/Students/AddStudent";
 import { AddTeacher } from "./components/Teachers/AddTeacher";
 import ProtectedRoute from "./utils/ProtectedRoute";
 import { AuthProvider } from "./context/AuthProvider";
+import { AddDepartment } from "./components/Department/AddDepartment";
+import { Departments } from "./components/Department/Departments";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -69,6 +71,14 @@ const router = createBrowserRouter([
         path:"/addteacher",
         // element:<AddTeacher/>
         element:( <ProtectedRoute element={<AddTeacher />} allowedRoles={["ROLE_LIBRARIAN"]} />),
+      }
+      ,{
+        path:"/adddepartment",
+        element:(<ProtectedRoute element={<AddDepartment/>} allowedRoles={["ROLE_LIBRARIAN"]}/>)
+      }
+      ,{
+        path:"/departments",
+        element:(<ProtectedRoute element={<Departments/>} allowedRoles={["ROLE_LIBRARIAN"]}/>)
       }
      
     ],
