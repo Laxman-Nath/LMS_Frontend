@@ -1,7 +1,8 @@
 import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
-import { updateBook } from "../ApisCalls/updateBook";
-import { editApi } from "../ApisCalls/EditApi";
+import { editApi } from "../../ApisCalls/EditApi";
+
+
 
 export const useUpdateBook = () => {
   const {
