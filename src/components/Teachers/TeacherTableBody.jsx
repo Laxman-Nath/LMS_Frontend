@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
 import { useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
-import { EditDeleteButton } from "../../uiutils/EditDeleteButton";
-import { Modal } from "../../uiutils/Modal";
+import { EditDeleteButton } from "../EditDeleteButton";
+import { Modal } from "../Modal";
 
-import { useDeleteTeacher } from "../../Queries/Teacher/useDeleteTeacher";
+import { useDeleteTeacher } from "../../hooks/queries/Teacher/useDeleteTeacher";
 import { DELETE_TEACHER } from "../../utils/Routes";
 import { EditTeacherForm } from "./EditTeacherForm";
 

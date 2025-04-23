@@ -1,10 +1,10 @@
-import { useMutation } from "@tanstack/react-query";
-import { editApi } from "../../ApisCalls/EditApi";
-import toast from "react-hot-toast";
+import { useMutation } from "@tanstack/react-query"
+import { editApi } from "../../api/EditApi"
+import toast from "react-hot-toast"
 
-export const useUpdateTeacher=()=>{
+export const useUpdateStudent=()=>{
     const {
-        mutate:updateTeacher,
+        mutate:updateStudent,
         isPending,
         isError
     }=useMutation({
@@ -16,5 +16,5 @@ export const useUpdateTeacher=()=>{
             toast.error(error.message);
         }
     })
-    return {updateTeacher,isPending,isError};
+    return {updateStudent,isPending,isError};
 }

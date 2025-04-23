@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { SubmitButton } from "../../uiutils/SubmitButton";
-import { Input } from "../../uiutils/Input";
+import { SubmitButton } from "../SubmitButton";
+import { Input } from "../Input";
 import { useForm } from "react-hook-form";
-import { UseLoginApi } from "../../Queries/UseLoginApi";
+import { UseLoginApi } from "../../hooks/queries/UseLoginApi";
 import { useQueryClient } from "@tanstack/react-query";
 export const LoginForm = () => {
   const { register, handleSubmit, formState, getValues } = useForm();

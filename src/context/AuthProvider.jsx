@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { getRole, getToken } from "../utils/Token";
-import { UseGetLoggedInUserApi } from "../Queries/UseGetLoggedInUserApi";
-import { Spinner } from "../uiutils/Spinner";
+import { UseGetLoggedInUserApi } from "../hooks/queries/UseGetLoggedInUserApi";
+import { Spinner } from "../components/Spinner";
 const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [userRole, setUserRole] = useState("");

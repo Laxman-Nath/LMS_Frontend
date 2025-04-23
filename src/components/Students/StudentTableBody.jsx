@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
-import { EditDeleteButton } from "../../uiutils/EditDeleteButton";
+import { EditDeleteButton } from "../EditDeleteButton";
 import { useQueryClient } from "@tanstack/react-query";
-import { Modal } from "../../uiutils/Modal";
+import { Modal } from "../Modal";
 import { EditStudentForm } from "./EditStudentForm";
-import { useDeleteStudent } from "../../Queries/Student/useDeleteStudent";
+import { useDeleteStudent } from "../../hooks/queries/Student/useDeleteStudent";
 import { DELETE_STUDENT } from "../../utils/Routes";
 
 export const StudentTableBody=({students,columnNames})=>{

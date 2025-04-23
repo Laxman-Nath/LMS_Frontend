@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
-import { LoginApi } from "../ApisCalls/LoginApi";
+import { LoginApi } from "../../api/LoginApi";
 import { useNavigate } from "react-router-dom";
-import { addRole, setToken } from "../utils/Token";
+import { addRole, setToken } from "../../utils/Token";
 import toast from "react-hot-toast";
 import { UseGetLoggedInUserApi } from "./UseGetLoggedInUserApi";
 export const UseLoginApi = () => {

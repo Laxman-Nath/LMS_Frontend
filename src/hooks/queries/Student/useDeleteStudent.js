@@ -1,9 +1,9 @@
-import toast from "react-hot-toast";
-import { deleteApi } from "../../ApisCalls/DeleteApi";
 import { useMutation } from "@tanstack/react-query";
+import { deleteApi } from "../../api/DeleteApi";
+import toast from "react-hot-toast";
 
-export const useDeleteTeacher=()=>{
-    const {mutate:deleteTeacher,isPending,isError}=useMutation(
+export const useDeleteStudent=()=>{
+    const {mutate:deleteStudent,isPending,isError}=useMutation(
         {
             mutationFn:deleteApi,
             onSuccess:(data)=>{
@@ -14,5 +14,5 @@ export const useDeleteTeacher=()=>{
             }
         }
     )
-    return {deleteTeacher,isPending,isError};
+    return {deleteStudent,isPending,isError};
 }

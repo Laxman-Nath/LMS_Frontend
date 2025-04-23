@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Navigate, NavLink, useLocation } from "react-router-dom";
-import { Spinner } from "../../uiutils/Spinner";
+import { Spinner } from "../Spinner";
 
 export const DashboardItem = ({ icon, title, path, role }) => {
   const location = useLocation();
