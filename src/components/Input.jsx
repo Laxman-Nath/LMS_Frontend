@@ -1,4 +1,4 @@
-import { ShowHidePassword } from "../utils/ShowHidePassword";
+import { ShowHidePassword } from "./ShowHidePassword";
 
 export const Input = ({
   label,

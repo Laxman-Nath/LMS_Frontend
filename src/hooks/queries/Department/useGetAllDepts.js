@@ -1,6 +1,6 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useSearchParams } from "react-router-dom";
-import { getAllApi } from "../../ApisCalls/getAllApi";
+import { getAllApi } from "../../api/getAllApi";
 import { VIEW_ALL_DEPTS } from "../../utils/Routes";
 import toast from "react-hot-toast";
 

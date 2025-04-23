@@ -1,5 +1,5 @@
 import { redirect } from "react-router-dom";
-import { UseGetLoggedInUserApi } from "../Queries/UseGetLoggedInUserApi";
+import { UseGetLoggedInUserApi } from "../hooks/queries/UseGetLoggedInUserApi";
 
 export const setToken = (token) => {
   localStorage.setItem("token", token);

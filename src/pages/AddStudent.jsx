@@ -1,16 +1,16 @@
 import { useForm } from "react-hook-form";
-import { Input } from "../../uiutils/Input";
-import { SubmitButton } from "../../uiutils/SubmitButton";
+import { Input } from "../components/Input";
+import { SubmitButton } from "../components/SubmitButton";
 
-import { Spinner } from "../../uiutils/Spinner";
-import { ADD_STUDENT } from "../../utils/Routes";
-import { uploadToCloudinary } from "../../utils/uploadToCloudinary";
+import { Spinner } from "../components/Spinner";
+import { ADD_STUDENT } from "../utils/Routes";
+import { uploadToCloudinary } from "../utils/uploadToCloudinary";
 import { useState } from "react";
-import { RadioInput } from "../../uiutils/RadioInput";
-import { FileInput } from "../../uiutils/FileInput";
-import { useAddStudent } from "../../Queries/Student/useAddStudent";
-import { useGetAllDepts } from "../../Queries/Department/useGetAllDepts";
-import { SelectInput } from "../../uiutils/SelectInput";
+import { RadioInput } from "../components/RadioInput";
+import { FileInput } from "../components/FileInput";
+import { useAddStudent } from "../hooks/queries/Student/useAddStudent";
+import { useGetAllDepts } from "../hooks/queries/Department/useGetAllDepts";
+import { SelectInput } from "../components/SelectInput";
 
 export const AddStudent = () => {
   const [image, setImage] = useState("");

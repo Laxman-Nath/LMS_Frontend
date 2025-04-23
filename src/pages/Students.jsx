@@ -1,6 +1,6 @@
-import { useGetAllStudents } from "../../Queries/Student/useGetAllStudents";
-import { Spinner } from "../../uiutils/Spinner";
-import { StudentTable } from "./StudentTAble"
+import { useGetAllStudents } from "../hooks/queries/Student/useGetAllStudents";
+import { Spinner } from "../components/Spinner";
+import { StudentTable } from "../components/Students/StudentTAble"
 
 export const Students=()=>{
     const { students, isPending, isError, error } = useGetAllStudents();

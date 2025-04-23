@@ -3,20 +3,20 @@ import { Dashboard } from "./components/Dashboard/Dashboard";
 import "./index.css";
 import { RootLayout } from "./components/Root/RootLayout";
 import { Books } from "./components/Books/Books";
-import { Home } from "./components/Home/Home";
-import { Students } from "./components/Students/Students";
-import { Teachers } from "./components/Teachers/Teachers";
+import { Home } from "./pages/Home";
+import { Students } from "./pages/Students";
+import { Teachers } from "./pages/Teachers";
 
-import { LoginPage } from "./components/Login/LoginPage";
+import { LoginPage } from "./pages/LoginPage";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "react-hot-toast";
-import Unauthorized from "./uiutils/Unauthorized";
+import Unauthorized from "./pages/Unauthorized";
 
 import { checkAuth } from "./utils/Token";
 import { AddBook } from "./components/Books/AddBook";
-import { AddStudent } from "./components/Students/AddStudent";
+import { AddStudent } from "./pages/AddStudent";
 import { AddTeacher } from "./components/Teachers/AddTeacher";
-import ProtectedRoute from "./utils/ProtectedRoute";
+import ProtectedRoute from "./components/ProtectedRoute";
 import { AuthProvider } from "./context/AuthProvider";
 import { AddDepartment } from "./components/Department/AddDepartment";
 import { Departments } from "./components/Department/Departments";

@@ -2,16 +2,16 @@
 import { useState } from "react";
 
 import { useForm } from "react-hook-form";
-import { Spinner } from "../../uiutils/Spinner";
+import { Spinner } from "../Spinner";
 import { uploadToCloudinary } from "../../utils/uploadToCloudinary";
 
-import { RadioInput } from "../../uiutils/RadioInput";
-import { FileInput } from "../../uiutils/FileInput";
+import { RadioInput } from "../RadioInput";
+import { FileInput } from "../FileInput";
 import { HiXMark } from "react-icons/hi2";
-import { SubmitButton } from "../../uiutils/SubmitButton";
-import { Input } from "../../uiutils/Input";
+import { SubmitButton } from "../SubmitButton";
+import { Input } from "../Input";
 import {  UPDATE_TEACHER } from "../../utils/Routes";
-import { useUpdateTeacher } from "../../Queries/Teacher/useUpdateTeacher";
+import { useUpdateTeacher } from "../../hooks/queries/Teacher/useUpdateTeacher";
 
 export const EditTeacherForm = ({ teacher, onClick }) => {
   const [image, setImage] = useState("");
