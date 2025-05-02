@@ -1,6 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
-import { deleteApi } from "../../ApisCalls/DeleteApi";
+
 import toast from "react-hot-toast";
+import { deleteApi } from "../../../api/DeleteApi";
 
 export const useDeleteDept=()=>{
     const {mutate:deleteDept,isPending,isError}=useMutation(
