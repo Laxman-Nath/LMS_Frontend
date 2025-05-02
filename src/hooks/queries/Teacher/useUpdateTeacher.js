@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
-import { editApi } from "../../api/EditApi";
 import toast from "react-hot-toast";
+import { editApi } from "../../../api/EditApi";
 
 export const useUpdateTeacher=()=>{
     const {

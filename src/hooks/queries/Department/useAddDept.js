@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
-import { postApi } from "../../ApisCalls/PostApi";
 import toast from "react-hot-toast";
+import { postApi } from "../../../api/PostApi";
 
 export const useAddDept = () => {
   const { mutate:addDept, isPending, isError } = useMutation({

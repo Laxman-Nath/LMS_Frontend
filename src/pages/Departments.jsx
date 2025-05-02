@@ -1,6 +1,9 @@
-import { useGetAllDepts } from "../../Queries/Department/useGetAllDepts"
-import { Spinner } from "../../uiutils/Spinner";
-import { DepartmentTable } from "./DepartmentTable";
+
+
+import { DepartmentTable } from "../components/Department/DepartmentTable";
+import { Spinner } from "../components/Spinner";
+import { useGetAllDepts } from "../hooks/queries/Department/useGetAllDepts";
+
 
 export const Departments=()=>{
     const {depts,isError,isPending,error}=useGetAllDepts();

@@ -1,12 +1,12 @@
-import { useForm } from "react-hook-form";
-import { Input } from "../../uiutils/Input";
-import { SubmitButton } from "../../uiutils/SubmitButton";
-
-import { Spinner } from "../../uiutils/Spinner";
-import { ADD_BOOK } from "../../utils/Routes";
-import { uploadToCloudinary } from "../../utils/uploadToCloudinary";
 import { useState } from "react";
-import { useAddBook } from "../../Queries/Book/useAddBook";
+import { useForm } from "react-hook-form";
+import { useAddBook } from "../hooks/queries/Book/useAddBook";
+import { Spinner } from "../components/Spinner";
+import { uploadToCloudinary } from "../utils/uploadToCloudinary";
+import { ADD_BOOK } from "../utils/Routes";
+import { Input } from "../components/Input";
+import { SubmitButton } from "../components/SubmitButton";
+
 
 export const AddBook = () => {
   const [image, setImage] = useState("");

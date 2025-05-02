@@ -3,15 +3,15 @@ import { useState } from "react";
 
 import { useForm } from "react-hook-form";
 import { Spinner } from "../Spinner";
+import { useUpdateStudent} from "../../hooks/queries/Student/useUpdateStudent";
 import { uploadToCloudinary } from "../../utils/uploadToCloudinary";
-
+import { UPDATE_STUDENT } from "../../utils/Routes";
+import { HiXMark } from "react-icons/hi2";
+import { Input } from "postcss";
 import { RadioInput } from "../RadioInput";
 import { FileInput } from "../FileInput";
-import { HiXMark } from "react-icons/hi2";
 import { SubmitButton } from "../SubmitButton";
-import { Input } from "../Input";
-import { useUpdateStudent } from "../../hooks/queries/Student/useUpdateStudent";
-import { UPDATE_STUDENT } from "../../utils/Routes";
+
 
 
 export const EditStudentForm = ({ student, onClick }) => {

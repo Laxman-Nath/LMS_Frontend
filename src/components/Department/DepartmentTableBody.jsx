@@ -1,12 +1,13 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
-import { EditDeleteButton } from "../../uiutils/EditDeleteButton";
-import { useQueryClient } from "@tanstack/react-query";
-import { Modal } from "../../uiutils/Modal";
 
-import { DELETE_DEPT, DELETE_STUDENT } from "../../utils/Routes";
-import { useDeleteDept } from "../../Queries/Department/useDeleteDept";
+import { useQueryClient } from "@tanstack/react-query";
+
+
 import { EditDepartmentForm } from "./EditDepartmentForm";
+import { useDeleteDept } from "../../hooks/queries/Department/useDeleteDept";
+import { DELETE_DEPT } from "../../utils/Routes";
+import { EditDeleteButton } from "../EditDeleteButton";
 
 export const DepartmentTableBody = ({ depts, columnNames }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);

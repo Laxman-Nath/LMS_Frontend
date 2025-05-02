@@ -1,17 +1,18 @@
 /* eslint-disable react/prop-types */
 import { useForm } from "react-hook-form";
-import { Input } from "../../uiutils/Input";
-import { SubmitButton } from "../../uiutils/SubmitButton";
 import { HiXMark } from "react-icons/hi2";
-
-
-
-
-import { UPDATE_BOOK } from "../../utils/Routes";
 import { useState } from "react";
-import { uploadToCloudinary } from "../../utils/uploadToCloudinary";
 import { useQueryClient } from "@tanstack/react-query";
-import { useUpdateBook } from "../../Queries/Book/useUpdateBook";
+import { useUpdateBook } from "../../hooks/queries/Book/useUpdateBook";
+import { uploadToCloudinary } from "../../utils/uploadToCloudinary";
+import { UPDATE_BOOK } from "../../utils/Routes";
+import { Input } from "../Input";
+import { SubmitButton } from "../SubmitButton";
+
+
+
+
+
 
 
 export const EditBookForm = ({ onClick, book }) => {

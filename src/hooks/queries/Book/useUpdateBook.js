@@ -1,6 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
-import { editApi } from "../../ApisCalls/EditApi";
+import { editApi } from "../../../api/EditApi";
+
 
 
 

@@ -1,11 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useForm } from "react-hook-form";
-import { useUpdateDept } from "../../Queries/Department/useUpdateDept";
-import { SubmitButton } from "../../uiutils/SubmitButton";
-import { Spinner } from "../../uiutils/Spinner";
-import { HiXMark } from "react-icons/hi2";
-import { Input } from "../../uiutils/Input";
-import { UPDATE_DEPT } from "../../utils/Routes";
+
 
 export const EditDepartmentForm=({dept,onClick})=>{
  

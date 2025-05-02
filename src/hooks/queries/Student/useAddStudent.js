@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query"
-import { postApi } from "../../api/PostApi"
 import toast from "react-hot-toast"
+import { postApi } from "../../../api/PostApi";
 
 export const useAddStudent=()=>{
     const {

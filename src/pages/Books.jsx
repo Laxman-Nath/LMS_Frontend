@@ -1,7 +1,8 @@
 import { useEffect } from "react";
-import { BookTable } from "./BookTable";
-import { Spinner } from "../../uiutils/Spinner";
-import { useViewAllBooks } from "../../Queries/Book/UseViewAllBooks";
+import { Spinner } from "../components/Spinner";
+import { useViewAllBooks } from "../hooks/queries/Book/UseViewAllBooks";
+import { BookTable } from "../components/Books/BookTable";
+
 
 export const Books = () => {
   const { books, isPending, isError, error } = useViewAllBooks();

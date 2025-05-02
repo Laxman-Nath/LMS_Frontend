@@ -1,8 +1,9 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useSearchParams } from "react-router-dom";
-import { getAllApi } from "../../api/getAllApi";
-import { VIEW_ALL_STUDENTS } from "../../utils/Routes";
+
 import toast from "react-hot-toast";
+import { getAllApi } from "../../../api/getAllApi";
+import { VIEW_ALL_STUDENTS } from "../../../utils/Routes";
 
 export const useGetAllStudents=()=>{
    // console.log("Params",params);

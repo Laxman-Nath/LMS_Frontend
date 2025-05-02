@@ -1,10 +1,11 @@
 
 import { useForm } from "react-hook-form";
-import { SubmitButton } from "../../uiutils/SubmitButton";
-import { Input } from "../../uiutils/Input";
-import { useAddDept } from "../../Queries/Department/useAddDept";
-import { Spinner } from "../../uiutils/Spinner";
-import { ADD_DEPT } from "../../utils/Routes";
+import { useAddDept } from "../hooks/queries/Department/useAddDept";
+import { Spinner } from "../components/Spinner";
+import { ADD_DEPT } from "../utils/Routes";
+import { Input } from "../components/Input";
+import { SubmitButton } from "../components/SubmitButton";
+
 
 export const AddDepartment = () => {
   

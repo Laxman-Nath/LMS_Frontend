@@ -1,15 +1,16 @@
 import { useState } from "react";
-import { uploadToCloudinary } from "../../utils/uploadToCloudinary";
-import { Input } from "../../uiutils/Input";
-import { RadioInput } from "../../uiutils/RadioInput";
-import { FileInput } from "../../uiutils/FileInput";
-import { SubmitButton } from "../../uiutils/SubmitButton";
-import { Spinner } from "../../uiutils/Spinner";
+import { useGetAllDepts } from "../hooks/queries/Department/useGetAllDepts";
+import { useAddTeacher } from "../hooks/queries/Teacher/useAddTeacher";
 import { useForm } from "react-hook-form";
-import { useAddTeacher } from "../../Queries/Teacher/useAddTeacher";
-import { ADD_TEACHER } from "../../utils/Routes";
-import { useGetAllDepts } from "../../Queries/Department/useGetAllDepts";
-import { SelectInput } from "../../uiutils/SelectInput";
+import { Spinner } from "../components/Spinner";
+import { uploadToCloudinary } from "../utils/uploadToCloudinary";
+import { ADD_TEACHER } from "../utils/Routes";
+import { Input } from "../components/Input";
+import { RadioInput } from "../components/RadioInput";
+import { FileInput } from "../components/FileInput";
+import { SelectInput } from "../components/SelectInput";
+import { SubmitButton } from "../components/SubmitButton";
+
 
 export const AddTeacher = () => {
   console.log("Inside add teacher........");
