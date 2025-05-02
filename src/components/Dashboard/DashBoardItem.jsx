@@ -1,48 +1,24 @@
-import { useEffect, useState } from "react";
-import { Navigate, NavLink, useLocation } from "react-router-dom";
-import { Spinner } from "../Spinner";
+import { useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export const DashboardItem = ({ icon, title, path, role }) => {
   const location = useLocation();
   const userRole = role || "";
 
-  
-  // const [loading, setIsLoading] = useState(true);
-
-  
-  // const restrictedPaths = ["/students", "/teachers", "/addstudent", "/addteacher", "/addbook"];
-  // const isNotAccessible = userRole !== "ROLE_LIBRARIAN" && restrictedPaths.includes(location.pathname);
-
-  
-  // useEffect(() => {
-  //   const timer = setTimeout(() => setIsLoading(false), 500); 
-  //   return () => clearTimeout(timer); 
-  // }, []);
-
-  
-  // if (loading) {
-  //   return <Spinner />;
-  // }
-
-  
-  // if (isNotAccessible) {
-  //   return <Navigate to="/unauthorized" replace />;
-  // }
-
   return (
-    <li className="flex justify-start mb-4 text-center cursor-pointer hover:text-gray-400">
-      <span className="text-3xl mr-2">{icon}</span>
+    <li className="mb-3">
       <NavLink
         to={path}
         className={({ isActive }) =>
-          `text-2xl ${
+          `flex items-center gap-10 p-3 rounded-lg transition-all duration-300 ${
             isActive
-              ? "scale-110 text-green-500 rounded-md transition-all duration-1000 ease-in-out"
-              : ""
+              ? "bg-[#374151] scale-[1.02] text-blue-400"
+              : "text-[#F9FAFB] hover:bg-[#374151] hover:scale-[1.02]"
           }`
         }
       >
-        {title}
+        <span className="text-2xl">{icon}</span>
+        <span className="text-lg">{title}</span>
       </NavLink>
     </li>
   );

@@ -25,7 +25,7 @@ export const LoginForm = () => {
     <>
       <form
         onSubmit={handleSubmit(onSubmit, onError)}
-        className="mt-10 shadow-2xl p-4 w-[50%] bg-primary rounded-md"
+        className="mt-10 shadow-2xl p-4 w-[45%] bg-gradient-to-r from-gray-600 via-gray-700 to-gray-800 rounded-md"
       >
        <h1 className="font-bold text-5xl text-center rounded-md text-white ">
             LOGIN
