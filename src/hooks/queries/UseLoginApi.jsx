@@ -14,7 +14,7 @@ export const UseLoginApi = () => {
     mutationFn: LoginApi,
     onSuccess: (data) => {
       setToken(data.token);
-      addRole(data.roleName);
+      // addRole(data.roleName);
 
       navigate("/");
       toast.success(data.message);

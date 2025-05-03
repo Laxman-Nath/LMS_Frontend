@@ -1,5 +1,6 @@
 import { redirect } from "react-router-dom";
 import { UseGetLoggedInUserApi } from "../hooks/queries/UseGetLoggedInUserApi";
+import { jwtDecode } from "jwt-decode";
 
 export const setToken = (token) => {
   localStorage.setItem("token", token);
@@ -28,5 +29,11 @@ export function addRole(roleName) {
 }
 
 export function getRole() {
-  return localStorage.getItem("userRole");
+  const token = getToken();
+  if (!token) return null;
+
+  const decoded = jwtDecode(token);
+  console.log("Decoded",decoded);
+  console.log("Roles:",decoded.roles);
+  return decoded.roles;
 }
