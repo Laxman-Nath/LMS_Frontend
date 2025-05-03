@@ -35,15 +35,14 @@ export const AddDepartment = () => {
     };
     return (
       <>
-        <div className="w-screen h-screen flex items-center justify-center">
-          <form
-            onSubmit={handleSubmit(onSubmit, onError)}
-            className=" shadow-2xl shadow-white p-4 w-[40%]  bg-primary rounded-md flex flex-col justify-center text-white"
-          >
-            <h1 className="font-bold text-5xl text-center rounded-md text-white ">
-              Add Department
-            </h1>
-            <hr className="border-t border-gray-300 w-full h-2" />
+        <div className="w-screen h-screen flex items-center justify-center bg-gradient-to-br from-black via-[#111] to-black overflow-x-hidden overflow-y-hidden">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="shadow-xl shadow-black/70 p-8 w-full max-w-3xl bg-[#161616] border border-white/10 rounded-2xl flex flex-col gap-1 text-white"
+      >
+        <h2 className="text-center text-4xl font-extrabold mb-2 ">Add Department</h2>
+        <hr className="border-white/20" />
+            
           
               <Input
                 type="text"

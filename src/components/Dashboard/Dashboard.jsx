@@ -22,8 +22,12 @@ import { FcDepartment } from "react-icons/fc";
 
 export const Dashboard = () => {
   const [open, setOpen] = useState(true);
+  const [showOption, setShowOption] = useState(false);
   const toggleSideBar = () => {
     setOpen(!open);
+  };
+  const handleOptions = () => {
+    setShowOption(!showOption);
   };
 
   const navigate = useNavigate();
@@ -57,6 +61,7 @@ export const Dashboard = () => {
         className={`${
           open ? "lg:w-72 md:w-50 sm:w-30" : "w-20"
         } fixed top-0 left-0 h-screen flex flex-col bg-[#1F2937] shadow-lg`}
+        onClick={()=> {if(showOption) setShowOption(false)}}
       >
         {/* Open/Close Button */}
         <div className="text-white mt-2 mr-2" onClick={toggleSideBar}>
@@ -67,17 +72,16 @@ export const Dashboard = () => {
           )}
         </div>
 
-        <h1 className="text-xl sm:text-2xl md:text-3xl font-semibold text-blue-600 text-center mb-4 uppercase tracking-tight border-b-2 border-blue-600 pb-1 transition-all duration-200 hover:text-blue-400">
-  Library Management Dashboard
-</h1>
-
+<h1 className={`${!open?"text-xs":"text-xl sm:text-2xl md:text-3xl font-semibold"}  text-blue-600 text-center mb-4 uppercase tracking-tight border-b-2 border-blue-600 pb-1 transition-all duration-200 hover:text-blue-400 text-center`}>
+          Library Management Dashboard
+        </h1>
 
         {/* Scrollable Content Section */}
         <div
           className="flex-1 overflow-y-auto mt-4 px-2 scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-gray-800"
           style={{
             maxHeight: `calc(100vh - 260px)`, // Adjusted height
-            overflowX: 'hidden', // Prevent horizontal scrollbar
+            overflowX: "hidden", // Prevent horizontal scrollbar
           }}
         >
           <ul className="text-white text-1xl space-y-2">
@@ -93,7 +97,7 @@ export const Dashboard = () => {
                 icon={<IoMdAdd />}
                 title="Add Book"
                 path="addbook"
-                role={user && user.roleName}
+                        role={user && user.roleName}
               />
             )}
 
@@ -107,28 +111,35 @@ export const Dashboard = () => {
                   path="addstudent"
                   role={user && user.roleName}
                 />
-                <DashboardItem icon={<IoPeopleSharp />} title="Students" path="students" />
+                <DashboardItem
+                  icon={<IoPeopleSharp />}
+                  title="Students"
+                  path="students"
+                />
                 <DashboardItem
                   icon={<FaChalkboardTeacher />}
                   title="Add Teacher"
                   path="addteacher"
                 />
-                <DashboardItem icon={<GiTeacher />} title="Teachers" path="teachers" />
-                <DashboardItem icon={<IoMdAdd />} title="Add Department" path="adddepartment" />
-                <DashboardItem icon={<FcDepartment />} title="Departments" path="departments" />
+                <DashboardItem
+                  icon={<GiTeacher />}
+                  title="Teachers"
+                  path="teachers"
+                />
+                <DashboardItem
+                  icon={<IoMdAdd />}
+                  title="Add Department"
+                  path="adddepartment"
+                />
+                <DashboardItem
+                  icon={<FcDepartment />}
+                  title="Departments"
+                  path="departments"
+                />
               </>
             )}
 
-            {/* Move logout option outside user info */}
-            <li
-              className="flex justify-start mb-4 text-center cursor-pointer hover:text-gray-400"
-              onClick={logout}
-            >
-              <CiLogout className="text-3xl mr-2" />
-              <span className="text-2xl hover:scale-90 text-red-500 rounded-md transition-all duration-1000 ease-in-out">
-                Logout
-              </span>
-            </li>
+            
           </ul>
         </div>
 
@@ -145,21 +156,48 @@ export const Dashboard = () => {
             <div className="flex items-center text-white justify-between">
               {/* Avatar Section */}
               <div className="flex items-center">
-                <RxAvatar size={60} className="rounded-full border-2 border-white" />
+                <RxAvatar
+                  size={60}
+                  className="rounded-full border-2 border-white"
+                />
                 <div className="ml-4 flex flex-col gap-1">
                   <span className="lg:text-2xl md:text-xl sm:text-lg font-semibold">
-                    {isUserPresent && user.firstName} {isUserPresent && user.lastName}
+                    {isUserPresent && user.firstName}{" "}
+                    {isUserPresent && user.lastName}
                   </span>
                   <span className="text-sm text-gray-400 text-center">
-                    {isUserPresent && user.firstName} {isUserPresent && user.lastName}
+                    {isUserPresent && user.firstName}{" "}
+                    {isUserPresent && user.lastName}
                   </span>
                 </div>
               </div>
 
               {/* Three Dots (Options) */}
-              <div className="hover:cursor-pointer hover:text-gray-400 transition duration-300">
+              <div
+                className="hover:cursor-pointer hover:text-gray-400 transition duration-300"
+                onClick={handleOptions}
+              >
                 <BsThreeDots size={30} />
               </div>
+              {/* showing options on click of three dot */}
+              {showOption && (
+                <div className="absolute bottom-5 right-0  w-48 bg-white text-black shadow-lg rounded-md">
+                  <ul>
+                    <li
+                      className="px-4 py-2 cursor-pointer hover:bg-gray-300"
+                      // onClick={handleViewProfile}
+                    >
+                      View Profile
+                    </li>
+                    <li
+                      className="px-4 py-2 cursor-pointer hover:bg-gray-300"
+                      onClick={logout}
+                    >
+                      Logout
+                    </li>
+                  </ul>
+                </div>
+              )}
             </div>
           </div>
         )}

@@ -67,16 +67,16 @@ export const AddStudent = () => {
   };
   return (
     <>
-      <div className="w-screen h-screen flex items-center justify-center">
+      <div className="w-screen h-screen flex items-center justify-center bg-gradient-to-br from-black via-[#111] to-black overflow-x-hidden">
         <form
           onSubmit={handleSubmit(onSubmit, onError)}
-          className=" shadow-2xl shadow-white p-4 w-[40%]  bg-primary rounded-md flex flex-col justify-center text-white"
+         className=" shadow-xl shadow-black/70 p-8 w-full max-w-3xl bg-[#161616] border border-white/10 rounded-2xl flex flex-col gap-0 text-white mt-20"
         >
-          <h1 className="font-bold text-5xl text-center rounded-md text-white ">
+          <h2 className="font-bold text-5xl text-center rounded-md text-white ">
             Add Student
-          </h1>
+          </h2>
           <hr className="border-t border-gray-300 w-full h-2" />
-          <div className="grid grid-cols-2 gap-2">
+          <div className="grid grid-cols-2 gap-1">
             <Input
               type="text"
               name="firstName"
@@ -103,7 +103,7 @@ export const AddStudent = () => {
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-2">
+          <div className="grid grid-cols-2 gap-1">
             <Input
               type="email"
               name="email"
@@ -130,7 +130,7 @@ export const AddStudent = () => {
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-2">
+          <div className="grid grid-cols-2 gap-1">
             <RadioInput
               inputs={[
                 { label: "Male", value: "male" },
@@ -156,7 +156,7 @@ export const AddStudent = () => {
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-2">
+          <div className="grid grid-cols-2 gap-1">
             <Input
               type="number"
               name="rollNo"
@@ -182,7 +182,7 @@ export const AddStudent = () => {
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-2">
+          <div className="grid grid-cols-2 gap-1">
             <Input
               type="text"
               name="year"
@@ -219,7 +219,7 @@ export const AddStudent = () => {
               }),
             }}
           />
-          <div className="grid grid-cols-2 gap-2">
+          <div className="grid grid-cols-2 gap-1">
             <Input
               type="password"
               name="password"

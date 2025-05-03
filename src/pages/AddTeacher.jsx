@@ -11,129 +11,106 @@ import { FileInput } from "../components/FileInput";
 import { SelectInput } from "../components/SelectInput";
 import { SubmitButton } from "../components/SubmitButton";
 
-
 export const AddTeacher = () => {
-  console.log("Inside add teacher........");
   const [image, setImage] = useState("");
-  const { depts,isError,isPending } = useGetAllDepts();
-  // const deptData=depts && depts.data;
+  const { depts, isError, isPending } = useGetAllDepts();
   const { addTeacher } = useAddTeacher();
   const [isUploading, setIsUploading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+
   const togglePasswordVisibility = () => {
-    setShowPassword((showPassword) => !showPassword);
+    setShowPassword((prev) => !prev);
   };
-  // console.log("Dept inside add teacher:",depts && depts.data);
+
   const {
     register,
     handleSubmit,
-    formState,
-    getValues,
-    setValue,
     formState: { errors },
   } = useForm();
-  if (isError) {
-    console.log("error");
-  }
-  if (isPending) {
-    return <Spinner />;
-  }
+
+  if (isError) return <div className="text-white">Something went wrong.</div>;
+  if (isPending) return <Spinner />;
+
   const handleImage = async (event) => {
     setIsUploading(true);
     const file = event.target.files[0];
     try {
       if (file) {
         const imageUrl = await uploadToCloudinary(file, "image");
-        // console.log("image url",imageUrl);
-
         setImage(imageUrl);
       }
     } catch (error) {
-      console.log("Error occured", error);
+      console.error(error);
     } finally {
       setIsUploading(false);
     }
   };
+
   const onSubmit = (data) => {
     if (isUploading) {
-      console.log("image has not been uploaded yet");
+      console.log("Image is still uploading.");
       return;
     }
-    console.log("Before", data.bookImage);
     data.profileImage = image;
-    console.log("After", data.bookImage);
-    addTeacher({ data: data, path: ADD_TEACHER });
-    console.log(data);
+    addTeacher({ data, path: ADD_TEACHER });
   };
-  const onError = (error) => {
-    console.log(error);
-  };
+
   return (
-    <>
-      <div className="w-screen h-screen flex items-center justify-center mt-2">
-        <form
-          onSubmit={handleSubmit(onSubmit, onError)}
-          className=" shadow-2xl shadow-white p-4 w-[40%]  bg-primary rounded-md flex flex-col justify-center text-white"
-        >
-          <h1 className="font-bold text-5xl text-center rounded-md text-white ">
-            Add Teacher
-          </h1>
-          <hr className="border-t border-gray-300 w-full h-2" />
-          <div className="grid grid-cols-2 gap-2">
-            <Input
-              type="text"
-              name="firstName"
-              label="First Name"
-              id="firstName"
-              register={{
-                ...register("firstName", {
-                  required: "FirstName is required",
-                }),
-              }}
-              error={errors.firstName}
-            />
+    <div className="w-screen h-screen flex items-center justify-center bg-gradient-to-br from-black via-[#111] to-black overflow-x-hidden">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="shadow-xl shadow-black/70 p-8 w-full max-w-3xl bg-[#161616] border border-white/10 rounded-2xl flex flex-col gap-1 text-white mt-20"
+      >
+        <h2 className="text-center text-4xl font-extrabold mb-2 ">Add Teacher</h2>
+        <hr className="border-white/20" />
 
-            <Input
-              type="text"
-              name="lastName"
-              label="Last Name"
-              id="lastName"
-              register={{
-                ...register("lastName", {
-                  required: "LastName is required",
-                }),
-              }}
-            />
-          </div>
+        <div className="grid grid-cols-2 gap-4">
+          <Input
+            type="text"
+            name="firstName"
+            label="First Name"
+            id="firstName"
+            register={{
+              ...register("firstName", { required: "First Name is required" }),
+            }}
+            error={errors.firstName}
+          />
+          <Input
+            type="text"
+            name="lastName"
+            label="Last Name"
+            id="lastName"
+            register={{
+              ...register("lastName", { required: "Last Name is required" }),
+            }}
+            error={errors.lastName}
+          />
+        </div>
 
-          <div className="grid grid-cols-2 gap-2">
-            <Input
-              type="email"
-              name="email"
-              label="Email"
-              id="email"
-              register={{
-                ...register("email", {
-                  required: "Email is required",
-                }),
-              }}
-            />
+        <div className="grid grid-cols-2 gap-4">
+          <Input
+            type="email"
+            name="email"
+            label="Email"
+            id="email"
+            register={{
+              ...register("email", { required: "Email is required" }),
+            }}
+            error={errors.email}
+          />
+          <Input
+            type="text"
+            name="address"
+            label="Address"
+            id="address"
+            register={{
+              ...register("address", { required: "Address is required" }),
+            }}
+            error={errors.address}
+          />
+        </div>
 
-            <Input
-              type="text"
-              name="address"
-              label="Address"
-              id="address"
-              error={errors.address}
-              register={{
-                ...register("address", {
-                  required: "Address is required",
-                }),
-              }}
-            />
-          </div>
-
-          {/* <div className="grid grid-cols-2 gap-2"> */}
+        <div className="grid grid-cols-2 gap-4">
           <RadioInput
             inputs={[
               { label: "Male", value: "male" },
@@ -142,80 +119,74 @@ export const AddTeacher = () => {
             ]}
             name="gender"
             register={{
-              ...register("gender", {
-                required: "Gender is required",
-              }),
+              ...register("gender", { required: "Gender is required" }),
             }}
           />
           <FileInput
             name="profileImage"
             label="Profile Image"
             id="profileImage"
-            error={!image && "This field is required"}
-            register={{
-              ...register("profileImage"),
-            }}
+            error={!image && "Image is required"}
+            register={{ ...register("profileImage") }}
             handleImage={handleImage}
           />
-          {/* </div> */}
+        </div>
 
-          {/* <div className="grid grid-cols-1"> */}
-            <Input
-              type="date"
-              name="joinedDate"
-              label="Joined Date"
-              id="joinedDate"
-              error={errors.joinedDate}
-              register={{
-                ...register("joinedDate", {
-                  required: "Joined Date is required",
-                }),
-              }}
-            />
-             <SelectInput name="departmentName" label="Department Name"
-                depts={depts.data}
-                register={{
-                  ...register("departmentName",{
-                    required:"Department name is required"
-                  })
-                }}/> 
-          {/* </div> */}
+        <Input
+          type="date"
+          name="joinedDate"
+          label="Joined Date"
+          id="joinedDate"
+          register={{
+            ...register("joinedDate", {
+              required: "Joined Date is required",
+            }),
+          }}
+          error={errors.joinedDate}
+        />
 
-          <div className="grid grid-cols-2 gap-2 mt-2">
-            <Input
-              type="password"
-              name="password"
-              label="Password"
-              id="password"
-              error={errors?.password?.message}
-              togglePasswordVisibility={togglePasswordVisibility}
-              showPassword={showPassword}
-              register={{
-                ...register("password", {
-                  required: "Password is required",
-                }),
-              }}
-            />
+        <SelectInput
+          name="departmentName"
+          label="Department Name"
+          depts={depts.data}
+          register={{
+            ...register("departmentName", {
+              required: "Department is required",
+            }),
+          }}
+        />
 
-            <Input
-              type="password"
-              name="confirmPassword"
-              label="Confirm Password"
-              id="confirmPassword"
-              error={errors?.confirmPassword?.message}
-              togglePasswordVisibility={togglePasswordVisibility}
-              showPassword={showPassword}
-              register={{
-                ...register("confirmPassword", {
-                  required: "Confirm Password is required",
-                }),
-              }}
-            />
-          </div>
+        <div className="grid grid-cols-2 gap-4">
+          <Input
+            type="password"
+            name="password"
+            label="Password"
+            id="password"
+            togglePasswordVisibility={togglePasswordVisibility}
+            showPassword={showPassword}
+            register={{
+              ...register("password", { required: "Password is required" }),
+            }}
+            error={errors.password}
+          />
+          <Input
+            type="password"
+            name="confirmPassword"
+            label="Confirm Password"
+            id="confirmPassword"
+            togglePasswordVisibility={togglePasswordVisibility}
+            showPassword={showPassword}
+            register={{
+              ...register("confirmPassword", {
+                required: "Confirm Password is required",
+              }),
+            }}
+            error={errors.confirmPassword}
+          />
+        </div>
 
-          <SubmitButton>Add</SubmitButton>
-        </form>
-      </div>
-    </>
+        <SubmitButton>Add Teacher</SubmitButton>
+      </form>
+    </div>
   );
 };

@@ -15,7 +15,7 @@ export const RootLayout = () => {
          <Dashboard />
         
       </div>
-      <div className="bg-login h-screen w-screen text-center z-[23]  flex flex-wrap justify-center items-center">
+      <div className="bg-login h-full w-screen text-center z-[23]  flex flex-wrap justify-center items-center">
         <Outlet />
       </div>
     </div>
