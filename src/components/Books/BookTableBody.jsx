@@ -10,6 +10,7 @@ import { DELETE_BOOK } from "../../utils/Routes";
 import { EditDeleteButton } from "../EditDeleteButton";
 import { Modal } from "../Modal";
 import { EditBookForm } from "./EditBookForm";
+import { useDeleteBook } from "../../hooks/queries/Book/useDeleteBook";
 
 
 /* eslint-disable react/prop-types */
