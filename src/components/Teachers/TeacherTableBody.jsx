@@ -12,7 +12,7 @@ export const TeacherTableBody=({columnNames,teachers})=>{
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [teacherToEdit, setTeacherToEdit] = useState(null);
     const queryClient=useQueryClient();
-    const{deleteTeacher, isPending, isError, error } = useDeleteTeacher();
+    const{deleteTeacher, isPending:isDeletePending, isError:isDeleteError, error : deleteError } = useDeleteTeacher();
     // const handleEdit = () => {
     //   console.log("I m editing...");
   

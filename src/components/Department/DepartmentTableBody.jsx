@@ -8,6 +8,7 @@ import { EditDepartmentForm } from "./EditDepartmentForm";
 import { useDeleteDept } from "../../hooks/queries/Department/useDeleteDept";
 import { DELETE_DEPT } from "../../utils/Routes";
 import { EditDeleteButton } from "../EditDeleteButton";
+import { Modal } from "../Modal";
 
 export const DepartmentTableBody = ({ depts, columnNames }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);

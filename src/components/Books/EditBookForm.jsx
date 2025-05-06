@@ -15,24 +15,24 @@ import { SubmitButton } from "../SubmitButton";
 
 
 
-export const EditBookForm = ({ onClick, book }) => {
+export const EditBookForm = ({ onClick, entry }) => {
   // const {data,isLoading,isError,error}=useGetBookById();
   // console.log("Data",data({bookId}));
   const [image, setImage] = useState("");
   const queryClient = useQueryClient();
   const [isUploading, setIsUploading] = useState(false);
   const { update, isPending, isError, error } = useUpdateBook();
-  const id = book.id;
-  const bookImage = book.bookImage;
-  console.log("Book id:", id);
+
+  const bookImage = entry?.bookImage;
+  console.log("Book id:",entry?.id);
   console.log("Book image", bookImage);
   const { register, handleSubmit, formState, getValues } = useForm({
     defaultValues: {
-      title: book?.title || "",
-      quantity: book?.quantity || 0,
-      authorName: book?.authorName || "",
-      publishedDate: book?.publishedDate || "",
-      isbn: book?.isbn || " ",
+      title: entry?.title || "",
+      quantity: entry?.quantity || 0,
+      authorName: entry?.authorName || "",
+      publishedDate: entry?.publishedDate || "",
+      isbn: entry?.isbn || " ",
     },
   });
 
@@ -65,7 +65,7 @@ export const EditBookForm = ({ onClick, book }) => {
 
     try {
       console.log("Submitting data with image:", data);
-      await update({ data: data, path: `${UPDATE_BOOK}?bookId=${id}` });
+      await update({ data: data, path: `${UPDATE_BOOK}?bookId=${entry.id}` });
       queryClient.invalidateQueries(["books"]);
     } catch (error) {
       console.error("Error updating book:", error);
@@ -76,16 +76,16 @@ export const EditBookForm = ({ onClick, book }) => {
     console.log(error);
   };
   return (
-    <div className="w-screen h-screen flex items-center justify-center">
+    <div className="w-screen h-screen flex items-center justify-center ">
       <form
         onSubmit={handleSubmit(onSubmit, onError)}
-        className=" shadow-2xl shadow-white p-4 w-[40%]  bg-primary rounded-md flex flex-col justify-center text-white"
+        className="shadow-2xl shadow-white mt-10 p-4 w-[40%] bg-primary rounded-md flex flex-col justify-center text-white"
       >
         <button
-          className=" text-white border-none p-2 rounded-sm translate-x-2 transition-all duration-200 "
+          className="text-white border-none mt-12 ml-0 rounded-sm translate-x-2 transition-all duration-200"
           onClick={onClick}
         >
-          <HiXMark className="w-5 h-5 text-white hover:text-gray-900" />
+          <HiXMark className="w-8 h-8 text-white hover:text-gray-900" />
         </button>
         <h1 className="font-bold text-5xl text-center rounded-md text-white ">
           Update Book
@@ -149,7 +149,7 @@ export const EditBookForm = ({ onClick, book }) => {
         <div className="text-center flex flex-col justify-center items-center">
           <h1 className="text-2xl">Old Image:</h1>
           <img
-            src={book.bookImage}
+            src={entry?.bookImage}
             className="w-20 h-20 object-cover rounded "
           />
         </div>

@@ -13,7 +13,7 @@ import { Input } from "../Input";
 import {  UPDATE_TEACHER } from "../../utils/Routes";
 import { useUpdateTeacher } from "../../hooks/queries/Teacher/useUpdateTeacher";
 
-export const EditTeacherForm = ({ teacher, onClick }) => {
+export const EditTeacherForm = ({ entry:teacher, onClick }) => {
   const [image, setImage] = useState("");
   const { updateTeacher, isError, isPending } = useUpdateTeacher();
   const [isUploading, setIsUploading] = useState(false);

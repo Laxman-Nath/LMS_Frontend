@@ -7,14 +7,15 @@ import { useUpdateStudent} from "../../hooks/queries/Student/useUpdateStudent";
 import { uploadToCloudinary } from "../../utils/uploadToCloudinary";
 import { UPDATE_STUDENT } from "../../utils/Routes";
 import { HiXMark } from "react-icons/hi2";
-import { Input } from "postcss";
+
 import { RadioInput } from "../RadioInput";
 import { FileInput } from "../FileInput";
 import { SubmitButton } from "../SubmitButton";
+import { Input } from "../Input";
 
 
 
-export const EditStudentForm = ({ student, onClick }) => {
+export const EditStudentForm = ({ entry, onClick }) => {
   const [image, setImage] = useState("");
   const { updateStudent, isError, isPending } = useUpdateStudent();
   const [isUploading, setIsUploading] = useState(false);
@@ -22,7 +23,7 @@ export const EditStudentForm = ({ student, onClick }) => {
   const togglePasswordVisibility = () => {
     setShowPassword((showPassword) => !showPassword);
   };
-  console.log("Student id:",student.id);
+  console.log("Student id:",entry.id);
   const {
     register,
     handleSubmit,
@@ -32,20 +33,19 @@ export const EditStudentForm = ({ student, onClick }) => {
     formState: { errors },
   } = useForm({
     defaultValues:{
-        firstName:student?.firstName,
-        lastName:student?.lastName,
-        email:student?.email,
-        address:student?.address,
-        gender:student?.gender,
-        password:student?.password,
-        confirmPassword:student?.confirmPassword,
-        profileImage:student?.profileImage,
-        rollNo:student?.rollNo,
-        year:student?.year,
-        semester:student?.semester,
-        joinedDate:student?.joinedDate
-    }
-  });
+        firstName:entry?.firstName,
+        lastName:entry?.lastName,
+        email:entry?.email,
+        address:entry?.address,
+        gender:entry?.gender,
+        password:entry?.password,
+        confirmPassword:entry?.confirmPassword,
+        profileImage:entry?.profileImage,
+        rollNo:entry?.rollNo,
+        year:entry?.year,
+        semester:entry?.semester,
+        joinedDate:entry?.joinedDentry
+  }});
   if (isError) {
     console.log("error");
   }
@@ -87,7 +87,7 @@ export const EditStudentForm = ({ student, onClick }) => {
       <div className="w-screen h-screen flex items-center justify-center mt-4">
         <form
           onSubmit={handleSubmit(onSubmit, onError)}
-          className=" shadow-2xl shadow-white p-4 w-[40%]  bg-primary rounded-md flex flex-col justify-center text-white"
+          className=" shadow-2xl shadow-white p-4 mt-8 w-[40%]  bg-primary rounded-md flex flex-col justify-center text-white"
         >
           <button
             className=" text-white border-none mt-2 ml-0 rounded-sm translate-x-2 transition-all duration-200 "
@@ -155,7 +155,7 @@ export const EditStudentForm = ({ student, onClick }) => {
           <div className="text-center flex flex-col justify-center items-center mt-1">
           <h1 className="text-2xl">Old Image:</h1>
           <img
-            src={student.profileImage}
+            src={entry.profileImage}
             className="w-20 h-20 object-cover rounded "
           />
         </div>
