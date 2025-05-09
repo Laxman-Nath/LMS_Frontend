@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { GetLoggedInUserApi } from "../../api/GetLoggedInUserApi";
+import { GetLoggedInUserApi } from "../../api/getLoggedInUserApi";
 
 export const UseGetLoggedInUserApi = () => {
 

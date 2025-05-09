@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { getRole, getToken } from "../utils/Token"; // Utility functions to get role and token
 import { UseGetLoggedInUserApi } from "../hooks/queries/UseGetLoggedInUserApi"; // Custom hook to fetch user data
 import { Spinner } from "../components/Spinner"; // Loader component
+import { useNavigate } from "react-router-dom";
 
 export const AuthContext = createContext();
 
@@ -13,8 +14,15 @@ export const AuthProvider = ({ children }) => {
   const { user, isPending, isError, error } = UseGetLoggedInUserApi();
   const token = getToken();
   const role = getRole();
+  const navigate = useNavigate();
+  
 
   useEffect(() => {
+    if(!token){
+      console.log("Inside !token");
+      navigate("/login");
+      return;
+    }
     console.log("Role:", role);
     console.log("User:", user);
   

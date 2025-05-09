@@ -1,12 +1,15 @@
 import { redirect } from "react-router-dom";
-import { UseGetLoggedInUserApi } from "../hooks/queries/UseGetLoggedInUserApi";
 import { jwtDecode } from "jwt-decode";
 
 export const setToken = (token) => {
   localStorage.setItem("token", token);
 };
 export const getToken = () => {
-  return localStorage.getItem("token");
+ const token= localStorage.getItem("token");
+ if(isTokenExpired(token) || !token){
+  return null;
+ }
+ return token;
 };
 
 export const removeToken = () => {
@@ -32,8 +35,14 @@ export function getRole() {
   const token = getToken();
   if (!token) return null;
 
-  const decoded = jwtDecode(token);
-  console.log("Decoded",decoded);
-  console.log("Roles:",decoded.roles);
-  return decoded.roles;
+  const decodedToken = jwtDecode(token);
+  console.log("Decoded", decodedToken);
+  console.log("Roles:", decodedToken.roles);
+  return decodedToken.roles;
+}
+
+export function isTokenExpired(token) {
+  if(!token) return true;
+  const decodedToken = jwtDecode(token);
+  return decodedToken.expiry*1000 < Date.now();
 }
