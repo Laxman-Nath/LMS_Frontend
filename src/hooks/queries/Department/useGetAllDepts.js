@@ -2,7 +2,8 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useSearchParams } from "react-router-dom";
 import toast from "react-hot-toast";
 import { VIEW_ALL_DEPTS } from "../../../utils/Routes";
-import { getAllApi } from "../../../api/getAllApi";
+import { commonApi } from "../../../api/commonApi";
+
 
 
 export const useGetAllDepts = () => {
@@ -16,7 +17,7 @@ export const useGetAllDepts = () => {
     error,
   } = useQuery({
     queryFn: () =>
-      getAllApi({
+      commonApi({
         pageNumber,
         path: `${VIEW_ALL_DEPTS}?pageSize=5&sortingOrder=descending&sortParameter=addedDate`,
       isLogin:false,method:"GET",data:null}),

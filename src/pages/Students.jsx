@@ -1,6 +1,5 @@
 import { useGetAllStudents } from "../hooks/queries/Student/useGetAllStudents";
 import { Spinner } from "../components/Spinner";
-import { StudentTable } from "../components/Students/StudentTAble"
 import { useDeleteStudent } from "../hooks/queries/Student/useDeleteStudent";
 import { DELETE_STUDENT } from "../utils/Routes";
 import { EditStudentForm } from "../components/Students/EditStudentForm";

@@ -2,8 +2,8 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useSearchParams } from "react-router-dom";
 
 import toast from "react-hot-toast";
-import { getAllApi } from "../../../api/getAllApi";
 import { VIEW_ALL_STUDENTS } from "../../../utils/Routes";
+import { commonApi } from "../../../api/commonApi";
 
 export const useGetAllStudents=()=>{
    // console.log("Params",params);
@@ -20,7 +20,7 @@ export const useGetAllStudents=()=>{
     isError,
     error,
   } = useQuery({
-    queryFn:()=> getAllApi({pageNumber,path:`${VIEW_ALL_STUDENTS}?pageSize=5&sortingOrder=descending&sortParameter=addedDate`,isLogin:false,method:"GET",data:null}),
+    queryFn:()=> commonApi({pageNumber,path:`${VIEW_ALL_STUDENTS}?pageSize=5&sortingOrder=descending&sortParameter=addedDate`,isLogin:false,method:"GET",data:null}),
     queryKey: ['students',pageNumber],
     onError: (error) => {
       toast.error(error.message);

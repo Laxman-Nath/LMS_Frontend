@@ -1,7 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 
 import toast from "react-hot-toast";
-import { deleteApi } from "../../../api/DeleteApi";
 import { commonApi } from "../../../api/commonApi";
 
 export const useDeleteDept=()=>{

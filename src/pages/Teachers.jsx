@@ -1,6 +1,5 @@
 import { useGetAllTeachers } from "../hooks/queries/Teacher/useGetAllTeachers";
 import { Spinner } from "../components/Spinner";
-import { TeacherTable } from "../components/Teachers/TeacherTable"
 import { Table } from "../components/Table/Table";
 import { DELETE_TEACHER } from "../utils/Routes";
 import { EditTeacherForm } from "../components/Teachers/EditTeacherForm";

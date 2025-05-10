@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { Spinner } from "../components/Spinner";
 import { useViewAllBooks } from "../hooks/queries/Book/useViewAllBooks";
-import { BookTable } from "../components/Books/BookTable";
 import { getRole } from "../utils/Token";
 import { BookCard } from "../components/Books/BookCard";
 import { Table } from "../components/Table/Table";
