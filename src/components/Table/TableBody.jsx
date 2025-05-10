@@ -26,7 +26,7 @@ export const TableBody = ({ data, columnNames, deleteRoute, deleteApi, editForm:
     const id = dept.id;
     console.log("Inside handle delete...");
     console.log("id=", id);
-    deleteApi({ path: `${deleteRoute}?id=${id}` });
+    deleteApi({ path: `${deleteRoute}?id=${id}` ,isLogin:false,method:"DELETE",data:null,pageNumber:null});
     queryClient.invalidateQueries(["books"]);
   };
 

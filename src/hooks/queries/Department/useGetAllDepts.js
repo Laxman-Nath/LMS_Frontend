@@ -19,7 +19,7 @@ export const useGetAllDepts = () => {
       getAllApi({
         pageNumber,
         path: `${VIEW_ALL_DEPTS}?pageSize=5&sortingOrder=descending&sortParameter=addedDate`,
-      }),
+      isLogin:false,method:"GET",data:null}),
     queryKey: ["depts", pageNumber],
     onError: (error) => {
       toast.error(error.message);

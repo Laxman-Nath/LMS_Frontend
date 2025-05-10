@@ -2,12 +2,13 @@ import { useState } from "react";
 import { SubmitButton } from "../SubmitButton";
 import { Input } from "../Input";
 import { useForm } from "react-hook-form";
-import { UseLoginApi } from "../../hooks/queries/UseLoginApi";
 import { useQueryClient } from "@tanstack/react-query";
+import { LOGIN } from "../../utils/Routes";
+import { useLogin } from "../../hooks/queries/auth/useLogin";
 export const LoginForm = () => {
   const { register, handleSubmit, formState, getValues } = useForm();
   const queryClient=useQueryClient();
-  const{login,isPending,isError}=UseLoginApi();
+  const{login,isPending,isError}=useLogin();
   const { errors } = formState;
   const [showPassword, setShowPassword] = useState(false);
   const togglePasswordVisibility = () => {
@@ -15,7 +16,7 @@ export const LoginForm = () => {
   };
   const onSubmit = (data) => {
   
-    login(data);
+    login({data,isLogin:true,method:"POST",path:LOGIN,pageNumber:null});
     console.log(data);
   };
   const onError = (error) => {

@@ -1,7 +1,7 @@
 import { GET_AUTHENTICATED_USER } from "../utils/Routes";
 import { getToken } from "../utils/Token";
 
-export const GetLoggedInUserApi = async () => {
+export const getLoggedInUserApi = async () => {
   const token = getToken();
   console.log("token",token);
   try {

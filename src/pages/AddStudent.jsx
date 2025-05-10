@@ -59,7 +59,7 @@ export const AddStudent = () => {
     console.log("Before", data.bookImage);
     data.profileImage = image;
     console.log("After", data.bookImage);
-    addStudent({ data: data, path: ADD_STUDENT });
+    addStudent({ data: data, path: ADD_STUDENT,isLogin:false,pageNumber:null ,method:"POST" });
     console.log(data);
   };
   const onError = (error) => {

@@ -31,7 +31,7 @@ export const AddBook = () => {
     console.log("Before", data.bookImage);
     data.bookImage = image;
     console.log("After", data.bookImage);
-    addBook({ data: data, path: ADD_BOOK });
+    addBook({ data: data, path: ADD_BOOK,isLogin:false,pageNumber:null ,method:"POST" });
     console.log(data);
   };
   const onError = (error) => {

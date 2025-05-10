@@ -3,6 +3,7 @@ import toast from "react-hot-toast";
 import { useSearchParams } from "react-router-dom";
 import { getAllApi } from "../../../api/getAllApi";
 import { VIEW_ALL_BOOKS } from "../../../utils/Routes";
+import { commonApi } from "../../../api/commonApi";
 // import { VIEW_ALL_BOOKS } from "../utils/Routes";
 // import { getAllApi } from "../ApisCalls/getAllApi";
 
@@ -22,8 +23,8 @@ export const useViewAllBooks = () => {
     isError,
     error,
   } = useQuery({
-    queryFn:()=> getAllApi({pageNumber,path:`${VIEW_ALL_BOOKS
-    }?pageSize=5&sortingOrder=descending&sortParameter=addedDate`}),
+    queryFn:()=> commonApi({pageNumber:pageNumber,path:`${VIEW_ALL_BOOKS
+    }?pageSize=5&sortingOrder=descending&sortParameter=addedDate`,isLogin:false,method:"GET",data:null}),
     queryKey: ['books',pageNumber],
     onError: (error) => {
       toast.error(error.message);

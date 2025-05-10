@@ -1,6 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { editApi } from "../../../api/EditApi";
+import { commonApi } from "../../../api/commonApi";
 
 
 
@@ -12,7 +13,7 @@ export const useUpdateBook = () => {
     isError,
     error,
   } = useMutation({
-    mutationFn: editApi,
+    mutationFn: commonApi,
     onSuccess: (data) => {
       //   console.log("Success inside query", data);
         toast.success(data.message || "Book is updated successfully!");

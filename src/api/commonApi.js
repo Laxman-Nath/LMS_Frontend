@@ -7,6 +7,8 @@ export const commonApi = async ({
   data,
   pageNumber,
 }) => {
+  console.log("Page number",pageNumber);
+  
   try {
     const token = getToken();
     let response;
@@ -22,8 +24,9 @@ export const commonApi = async ({
         });
         break;
       case "GET":
+        console.log("Inside get case");
         response = await fetch(
-          pageNumber !== null ? path : `${path}&pageNo=${pageNumber}`,
+          pageNumber === null ? path : `${path}&pageNo=${pageNumber}`,
           {
             method:  method ,
             headers: {
@@ -53,13 +56,16 @@ export const commonApi = async ({
         });
         break;
     }
-    if (response.status === 200) {
+    console.log("Response inside api call",response);
+    if (response?.status === 200) {
       const data = await response.json();
+      console.log("Data after parsing",data);
       return data;
     }
     const errBody = await response.json();
     throw new Error(errBody.message || "Something went wrong!");
   } catch (error) {
+    console.log("Error inside api call:",error)
     if (typeof error.message === "string") {
       throw new Error(error.message);
     }

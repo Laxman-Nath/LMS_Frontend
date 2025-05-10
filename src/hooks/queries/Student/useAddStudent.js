@@ -1,6 +1,7 @@
 import { useMutation } from "@tanstack/react-query"
 import toast from "react-hot-toast"
 import { postApi } from "../../../api/PostApi";
+import { commonApi } from "../../../api/commonApi";
 
 export const useAddStudent=()=>{
     const {
@@ -9,7 +10,7 @@ export const useAddStudent=()=>{
         isError
     }=useMutation(
         {
-            mutationFn:postApi,
+            mutationFn:commonApi,
             onSuccess:(data)=>{
                 toast.success(data.message);
             },

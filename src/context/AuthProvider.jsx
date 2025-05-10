@@ -1,8 +1,9 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { getRole, getToken } from "../utils/Token"; // Utility functions to get role and token
-import { UseGetLoggedInUserApi } from "../hooks/queries/UseGetLoggedInUserApi"; // Custom hook to fetch user data
 import { Spinner } from "../components/Spinner"; // Loader component
 import { useNavigate } from "react-router-dom";
+import { useGetLoggedInUserApi } from "../hooks/queries/auth/UseGetLoggedInUserApi";
+
 
 export const AuthContext = createContext();
 
@@ -11,10 +12,11 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true); // Loading state for initial role fetching
 
   // You can use an API or token to fetch user role
-  const { user, isPending, isError, error } = UseGetLoggedInUserApi();
+  const { user, isPending, isError, error } =useGetLoggedInUserApi();
   const token = getToken();
   const role = getRole();
   const navigate = useNavigate();
+  console.log("User inside context:",user);
   
 
   useEffect(() => {

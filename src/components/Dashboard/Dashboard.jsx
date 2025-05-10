@@ -6,7 +6,6 @@ import { DashboardItem } from "./DashBoardItem";
 import { SiBookstack } from "react-icons/si";
 import { RxAvatar } from "react-icons/rx";
 import { BsThreeDots } from "react-icons/bs";
-import { UseGetLoggedInUserApi } from "../../hooks/queries/UseGetLoggedInUserApi";
 import { Spinner } from "../Spinner";
 import { CiLogout } from "react-icons/ci";
 import { removeToken } from "../../utils/Token";
@@ -19,6 +18,7 @@ import { FaChalkboardTeacher } from "react-icons/fa";
 import { useAuth } from "../../context/AuthProvider";
 
 import { FcDepartment } from "react-icons/fc";
+import { useGetLoggedInUserApi } from "../../hooks/queries/auth/UseGetLoggedInUserApi";
 
 export const Dashboard = () => {
   const [open, setOpen] = useState(true);
@@ -41,7 +41,7 @@ export const Dashboard = () => {
     }, 2000);
   };
 
-  const { user, isPending, isError, error } = UseGetLoggedInUserApi();
+  const { user, isPending, isError, error } = useGetLoggedInUserApi();
   const { userRole } = useAuth();
 
   if (isPending) {

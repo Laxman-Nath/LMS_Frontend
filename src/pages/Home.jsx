@@ -1,8 +1,8 @@
 import { Spinner } from "../components/Spinner";
-import { UseGetLoggedInUserApi } from "../hooks/queries/UseGetLoggedInUserApi";
+import { useGetLoggedInUserApi } from "../hooks/queries/auth/UseGetLoggedInUserApi";
 
 export const Home=()=>{
-     const { user, isPending, isError, error } = UseGetLoggedInUserApi();
+     const { user, isPending, isError, error } = useGetLoggedInUserApi();
      if(isPending){
         return <Spinner/>
      }

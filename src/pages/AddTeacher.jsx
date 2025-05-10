@@ -52,7 +52,7 @@ export const AddTeacher = () => {
       return;
     }
     data.profileImage = image;
-    addTeacher({ data, path: ADD_TEACHER });
+    addTeacher({ data, path: ADD_TEACHER ,isLogin:false,pageNumber:null ,method:"POST"});
   };
 
   return (

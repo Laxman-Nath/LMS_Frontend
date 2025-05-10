@@ -76,7 +76,7 @@ export const EditStudentForm = ({ entry, onClick }) => {
     console.log("Before", data.bookImage);
     data.profileImage = image;
     console.log("After", data.bookImage);
-    updateStudent({ data: data, path: `${UPDATE_STUDENT}?studentId=${student.id}` });
+    updateStudent({ data: data, path: `${UPDATE_STUDENT}?studentId=${entry.id}`,isLogin:false,method:"PUT",pageNumber:null  });
     console.log(data);
   };
   const onError = (error) => {

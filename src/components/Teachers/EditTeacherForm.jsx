@@ -77,6 +77,7 @@ export const EditTeacherForm = ({ entry:teacher, onClick }) => {
     updateTeacher({
       data: data,
       path: `${UPDATE_TEACHER}?teacherId=${teacher.id}`,
+      isLogin:false,method:"PUT",pageNumber:null 
     });
     console.log(data);
   };

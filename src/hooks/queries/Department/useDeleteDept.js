@@ -2,11 +2,12 @@ import { useMutation } from "@tanstack/react-query";
 
 import toast from "react-hot-toast";
 import { deleteApi } from "../../../api/DeleteApi";
+import { commonApi } from "../../../api/commonApi";
 
 export const useDeleteDept=()=>{
     const {mutate:deleteDept,isPending,isError}=useMutation(
         {
-            mutationFn:deleteApi,
+            mutationFn:commonApi,
             onSuccess:(data)=>{
                 toast.success(data.message);
             },

@@ -1,6 +1,7 @@
 import { useMutation } from "@tanstack/react-query"
 import toast from "react-hot-toast"
 import { editApi } from "../../../api/EditApi";
+import { commonApi } from "../../../api/commonApi";
 
 export const useUpdateStudent=()=>{
     const {
@@ -8,7 +9,7 @@ export const useUpdateStudent=()=>{
         isPending,
         isError
     }=useMutation({
-        mutationFn:editApi,
+        mutationFn:commonApi,
         onSuccess:(data)=>{
             toast.success(data.message);
         },

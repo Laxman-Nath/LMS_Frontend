@@ -27,7 +27,7 @@ export const AddDepartment = () => {
     
     const onSubmit = (data) => {
 
-      addDept({ data: data, path: ADD_DEPT });
+      addDept({ data: data, path: ADD_DEPT,method:"POST",isLogin:false,pageNumber:null });
       console.log(data);
     };
     const onError = (error) => {

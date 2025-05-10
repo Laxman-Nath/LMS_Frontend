@@ -65,7 +65,7 @@ export const EditBookForm = ({ onClick, entry }) => {
 
     try {
       console.log("Submitting data with image:", data);
-      await update({ data: data, path: `${UPDATE_BOOK}?bookId=${entry.id}` });
+      update({ data: data, path: `${UPDATE_BOOK}?bookId=${entry.id}`,isLogin:false,method:"PUT",pageNumber:null });
       queryClient.invalidateQueries(["books"]);
     } catch (error) {
       console.error("Error updating book:", error);

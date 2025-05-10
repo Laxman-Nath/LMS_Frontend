@@ -1,17 +1,18 @@
 import { useMutation } from "@tanstack/react-query";
-import { LoginApi } from "../../api/LoginApi";
+import { LoginApi } from "../../../api/LoginApi";
 import { useNavigate } from "react-router-dom";
-import { addRole, setToken } from "../../utils/Token";
+import { addRole, setToken } from "../../../utils/Token";
 import toast from "react-hot-toast";
+import { commonApi } from "../../../api/commonApi";
 
-export const UseLoginApi = () => {
+export const useLogin = () => {
   const navigate = useNavigate();
   const {
     mutate: login,
     isPending,
     isError,
   } = useMutation({
-    mutationFn: LoginApi,
+    mutationFn: commonApi,
     onSuccess: (data) => {
       setToken(data.token);
       // addRole(data.roleName);

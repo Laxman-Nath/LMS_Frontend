@@ -18,7 +18,7 @@ export const useGetAllTeachers=()=>{
       isError,
       error,
     } = useQuery({
-      queryFn:()=>getAllApi({pageNumber,path:`${VIEW_ALL_TEACHERS}?pageSize=5&sortingOrder=descending&sortParameter=addedDate`}),
+      queryFn:()=>getAllApi({pageNumber,path:`${VIEW_ALL_TEACHERS}?pageSize=5&sortingOrder=descending&sortParameter=addedDate`,isLogin:false,method:"GET",data:null}),
       queryKey: ['teachers',pageNumber],
       onError: (error) => {
         toast.error(error.message);

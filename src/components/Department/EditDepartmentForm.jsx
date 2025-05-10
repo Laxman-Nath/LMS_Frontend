@@ -32,7 +32,7 @@ export const EditDepartmentForm = ({ entry, onClick }) => {
   }
 
   const onSubmit = (data) => {
-    updateDept({ data, path: `${UPDATE_DEPT}?departmentId=${entry.id}` });
+    updateDept({ data, path: `${UPDATE_DEPT}?departmentId=${entry.id}`,isLogin:false,method:"PUT",pageNumber:null  });
   };
 
   return (
