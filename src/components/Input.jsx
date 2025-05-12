@@ -15,8 +15,8 @@ export const Input = ({
   const isTextarea = type === "textarea";
 
   return (
-    <div className="flex flex-col gap-2 w-full">
-      <label htmlFor={id} className="text-lg font-semibold text-white">
+    <div className="flex flex-col gap-0 w-full">
+      <label htmlFor={id} className="text-lg font-semibold text-white text-center">
         {label}
       </label>
 

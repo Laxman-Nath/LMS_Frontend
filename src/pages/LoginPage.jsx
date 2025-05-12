@@ -1,6 +1,19 @@
+import { CommonForm } from "../components/CommonForm";
 import { LoginForm } from "../components/Login/LoginForm";
+import { useLogin } from "../hooks/queries/auth/useLogin";
+import { loginFormData } from "../utils/formData";
+import { LOGIN } from "../utils/Routes";
 
 export const LoginPage = () => {
+    const{login,isPending,isError}=useLogin();
+  const onSubmit = (data) => {
+    
+      login({data,isLogin:true,method:"POST",path:LOGIN,pageNumber:null});
+      console.log(data);
+    };
+    const onError = (error) => {
+      console.log(error);
+    };
   return (
     <div className="h-screen flex justify-around items-center bg-gradient-to-r from-gray-800 via-gray-900 to-black">
         <div className="w-full max-w-md p-6">
@@ -11,8 +24,8 @@ export const LoginPage = () => {
           <p className="mt-4 text-xl font-medium italic">"Your Gateway to Knowledge"</p>
         </div>
         </div>
-      <LoginForm />
-      
+      {/* <LoginForm /> */}
+      <CommonForm title={loginFormData.title} formData={loginFormData.data} onSubmit={onSubmit} onError={onError}/>
     </div>
   );
 };
