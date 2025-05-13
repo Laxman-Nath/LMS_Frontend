@@ -10,7 +10,7 @@ export const SelectInput = ({
   return (
     <div className={`flex flex-col items-center `}>
       <label className="text-2xl text-white">{label}</label>
-      <select {...register} name={name}         className=" h-17 text-sm border-2 border-black rounded-md outline-none p-2 hover:scale-90 transition-all ease-in-out duration-[1200ms] w-[70%] text-black">
+      <select {...register} name={name}         className=" h-17 text-sm border-2 border-black rounded-md outline-none p-2 hover:scale-90 transition-all ease-in-out duration-[1200ms] w-full text-black">
         {depts.map((dept, index) => (
           <option key={index} value={dept.name}>
             {dept.name}

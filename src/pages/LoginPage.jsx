@@ -25,7 +25,7 @@ export const LoginPage = () => {
         </div>
         </div>
       {/* <LoginForm /> */}
-      <CommonForm title={loginFormData.title} formData={loginFormData.data} onSubmit={onSubmit} onError={onError}/>
+      <CommonForm title={loginFormData.title} formData={loginFormData.data} onSubmit={onSubmit} onError={onError} handleImage={null}/>
     </div>
   );
 };

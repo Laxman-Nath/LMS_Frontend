@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 export const RadioInput=({inputs,name,register,error})=>{
     return (
-    <div className="flex justify-center items-center text-2xl p-2">
+    <div className="flex justify-center items-center text-2xl p-2 gap-10">
         {
             inputs.map((i,index)=>(
                 <label className="m-2" key={index}>{i.label}

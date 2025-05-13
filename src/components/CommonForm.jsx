@@ -1,17 +1,21 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { Input } from "./Input";
 import { SubmitButton } from "./SubmitButton";
-import { useForm } from "react-hook-form";
+import { RadioInput } from "./RadioInput";
+import { SelectInput } from "./SelectInput";
+import { FileInput } from "./FileInput";
 
-/* eslint-disable react/prop-types */
-export const CommonForm = ({ formData, title, onSubmit, onError }) => {
+export const CommonForm = ({ formData, title, onSubmit, onError, handleImage, image,radioList }) => {
   const [showPassword, setShowPassword] = useState(false);
   const togglePasswordVisibility = () => {
-    setShowPassword((showPassword) => !showPassword);
+    setShowPassword((prev) => !prev);
   };
+
   const { register, handleSubmit, formState, getValues } = useForm();
   const { errors } = formState;
-  console.log("data",formData);
+
   return (
     <>
       <form
@@ -22,25 +26,64 @@ export const CommonForm = ({ formData, title, onSubmit, onError }) => {
           {title}
         </h1>
         <hr className="border-t border-gray-300 w-full h-2" />
-        {formData.map((data, index) => (
-          <Input
-            key={index}
-            type={data.type}
-            name={data.name}
-            label={data.label}
-            id="email"
-            togglePasswordVisibility={
-              data.name === "password" ? togglePasswordVisibility : undefined
-            }
-            showPassword={data.name === "password" ? showPassword : undefined}
-            register={{
-              ...register(data.name, {
-                required: data.validation,
-              }),
-            }}
-            error={errors?.[data.name]?.message}
-          />
-        ))}
+
+        {formData.map((data, index) => {
+          if (data.type === "radio") {
+            return (
+              <RadioInput
+                key={index}
+                inputs={data.options}
+                name={data.name}
+                register={{
+                  ...register(data.name, { required: data.validation }),
+                }}
+              />
+            );
+          } else if (data.type === "select") {
+            return (
+              <SelectInput
+                key={index}
+                name={data.name}
+                label={data.label}
+                depts={radioList}
+                register={{
+                  ...register(data.name, { required: data.validation }),
+                }}
+              />
+            );
+          } else if (data.type === "file") {
+            return (
+              <FileInput
+                key={index}
+                name={data.name}
+                label={data.label}
+                id={data.id}
+                error={!image && "Image is required"}
+                register={{ ...register(data.name) }}
+                handleImage={handleImage}
+              />
+            );
+          } else {
+            return (
+              <Input
+                key={index}
+                type={data.type}
+                name={data.name}
+                label={data.label}
+                id={data.id}
+                togglePasswordVisibility={
+                  data.name === "password" ? togglePasswordVisibility : undefined
+                }
+                showPassword={data.name === "password" ? showPassword : undefined}
+                register={{
+                  ...register(data.name, { required: data.validation }),
+                }}
+                error={errors?.[data.name]?.message}
+              />
+            );
+          }
+        })}
+
         <SubmitButton>Submit</SubmitButton>
       </form>
     </>
