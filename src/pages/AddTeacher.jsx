@@ -61,7 +61,7 @@ export const AddTeacher = () => {
       console.log(error);
     };
   return (
-     <CommonForm title={addTeacherFormData.title} formData={addTeacherFormData.data} onSubmit={onSubmit} onError={onError} handleImage={handleImage} radioList={depts.data}/>
+     <CommonForm title={addTeacherFormData.title} formData={addTeacherFormData.data} onSubmit={onSubmit} onError={onError} handleImage={handleImage} radioList={depts.data} isPending={isPending}/>
     // <div className="w-screen h-screen flex items-center justify-center bg-gradient-to-br from-black via-[#111] to-black overflow-x-hidden">
     //   <form
     //     onSubmit={handleSubmit(onSubmit)}

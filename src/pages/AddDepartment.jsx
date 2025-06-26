@@ -5,6 +5,8 @@ import { Spinner } from "../components/Spinner";
 import { ADD_DEPT } from "../utils/Routes";
 import { Input } from "../components/Input";
 import { SubmitButton } from "../components/SubmitButton";
+import { CommonForm } from "../components/CommonForm";
+import { addDepartmentFormData } from "../utils/formData";
 
 
 export const AddDepartment = () => {
@@ -35,7 +37,8 @@ export const AddDepartment = () => {
     };
     return (
       <>
-        <div className="w-screen h-screen flex items-center justify-center bg-gradient-to-br from-black via-[#111] to-black overflow-x-hidden overflow-y-hidden">
+      <CommonForm title={addDepartmentFormData.title} formData={addDepartmentFormData.data} onSubmit={onSubmit} onError={onError} isPending={isPending} />
+        {/* <div className="w-screen h-screen flex items-center justify-center bg-gradient-to-br from-black via-[#111] to-black overflow-x-hidden overflow-y-hidden">
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="shadow-xl shadow-black/70 p-8 w-full max-w-3xl bg-[#161616] border border-white/10 rounded-2xl flex flex-col gap-1 text-white"
@@ -73,7 +76,7 @@ export const AddDepartment = () => {
   
             <SubmitButton>Add</SubmitButton>
           </form>
-        </div>
+        </div> */}
       </>
     );
 };

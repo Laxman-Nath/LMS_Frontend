@@ -7,6 +7,8 @@ import { ADD_BOOK } from "../utils/Routes";
 import { Input } from "../components/Input";
 import { SubmitButton } from "../components/SubmitButton";
 import { FileInput } from "../components/FileInput";
+import { CommonForm } from "../components/CommonForm";
+import { addBookFormData } from "../utils/formData";
 
 
 export const AddBook = () => {
@@ -39,7 +41,8 @@ export const AddBook = () => {
   };
   return (
     <>
-       <div className="w-screen h-screen flex items-center justify-center bg-gradient-to-br from-black via-[#111] to-black overflow-x-hidden">
+     <CommonForm title={addBookFormData.title} formData={addBookFormData.data} onSubmit={onSubmit} onError={onError} handleImage={handleImage} isPending={isPending} />
+       {/* <div className="w-screen h-screen flex items-center justify-center bg-gradient-to-br from-black via-[#111] to-black overflow-x-hidden">
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="shadow-xl shadow-black/70 p-8 w-full max-w-3xl bg-[#161616] border border-white/10 rounded-2xl flex flex-col gap-1 text-white mt-20"
@@ -100,7 +103,7 @@ export const AddBook = () => {
                 required: "Published date is required",
               }),
             }}
-          />
+          /> */}
 
           {/* <Input
             type="file"
@@ -128,7 +131,7 @@ export const AddBook = () => {
             {...register("bookImage")}
           /> */}
 
-          <FileInput
+          {/* <FileInput
                         name="bookImage"
                         label="Book Image"
                         id="bookImage"
@@ -141,7 +144,7 @@ export const AddBook = () => {
 
           <SubmitButton>Add</SubmitButton>
         </form>
-      </div>
+      </div> */}
     </>
   );
 };

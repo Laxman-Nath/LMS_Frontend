@@ -15,7 +15,7 @@ export const LoginPage = () => {
       console.log(error);
     };
   return (
-    <div className="h-screen flex justify-around items-center bg-gradient-to-r from-gray-800 via-gray-900 to-black">
+    <div className="h-screen flex justify-around items-center bg-gradient-to-r from-gray-800 via-gray-900 to-black flex-wrap">
         <div className="w-full max-w-md p-6">
         {/* Welcome text */}
         <div className="text-center mb-6 text-white">
@@ -25,7 +25,7 @@ export const LoginPage = () => {
         </div>
         </div>
       {/* <LoginForm /> */}
-      <CommonForm title={loginFormData.title} formData={loginFormData.data} onSubmit={onSubmit} onError={onError} handleImage={null}/>
+      <CommonForm title={loginFormData.title} formData={loginFormData.data} onSubmit={onSubmit} onError={onError} handleImage={null} isPending={isPending}/>
     </div>
   );
 };

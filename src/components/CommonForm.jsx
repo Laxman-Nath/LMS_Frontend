@@ -7,7 +7,7 @@ import { RadioInput } from "./RadioInput";
 import { SelectInput } from "./SelectInput";
 import { FileInput } from "./FileInput";
 
-export const CommonForm = ({ formData, title, onSubmit, onError, handleImage, image,radioList }) => {
+export const CommonForm = ({ formData, title, onSubmit, onError, handleImage, image,radioList,isPending }) => {
   const [showPassword, setShowPassword] = useState(false);
   const togglePasswordVisibility = () => {
     setShowPassword((prev) => !prev);
@@ -84,7 +84,7 @@ export const CommonForm = ({ formData, title, onSubmit, onError, handleImage, im
           }
         })}
 
-        <SubmitButton>Submit</SubmitButton>
+        <SubmitButton isPending={isPending}>Submit</SubmitButton>
       </form>
     </>
   );

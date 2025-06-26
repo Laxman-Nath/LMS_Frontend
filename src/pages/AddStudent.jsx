@@ -11,6 +11,8 @@ import { FileInput } from "../components/FileInput";
 import { useAddStudent } from "../hooks/queries/Student/useAddStudent";
 import { useGetAllDepts } from "../hooks/queries/Department/useGetAllDepts";
 import { SelectInput } from "../components/SelectInput";
+import { CommonForm } from "../components/CommonForm";
+import { addStudentFormData } from "../utils/formData";
 
 export const AddStudent = () => {
   const [image, setImage] = useState("");
@@ -67,7 +69,8 @@ export const AddStudent = () => {
   };
   return (
     <>
-      <div className="w-screen h-screen flex items-center justify-center bg-gradient-to-br from-black via-[#111] to-black overflow-x-hidden">
+    <CommonForm title={addStudentFormData.title} formData={addStudentFormData.data} onSubmit={onSubmit} onError={onError} handleImage={handleImage} radioList={depts.data} isPending={isPending}/>
+      {/* <div className="w-screen h-screen flex items-center justify-center bg-gradient-to-br from-black via-[#111] to-black overflow-x-hidden">
         <form
           onSubmit={handleSubmit(onSubmit, onError)}
          className=" shadow-xl shadow-black/70 p-8 w-full max-w-3xl bg-[#161616] border border-white/10 rounded-2xl flex flex-col gap-0 text-white mt-20"
@@ -253,7 +256,7 @@ export const AddStudent = () => {
 
           <SubmitButton>Add</SubmitButton>
         </form>
-      </div>
+      </div> */}
     </>
   );
 };
