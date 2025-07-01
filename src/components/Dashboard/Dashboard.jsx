@@ -9,7 +9,7 @@ import { BsThreeDots } from "react-icons/bs";
 import { Spinner } from "../Spinner";
 import { CiLogout } from "react-icons/ci";
 import { removeToken } from "../../utils/Token";
-import { useNavigate } from "react-router-dom";
+import { replace, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { IoMdAdd } from "react-icons/io";
 import { MdOutlinePersonAdd } from "react-icons/md";
@@ -32,6 +32,9 @@ export const Dashboard = () => {
 
   const navigate = useNavigate();
 
+  const handleViewProfile = () => {
+    navigate("/viewprofile", { replace: "true" }, { state: { user: user } });
+  };
   const logout = () => {
     removeToken();
     navigate("/login", { replace: true });
@@ -61,7 +64,9 @@ export const Dashboard = () => {
         className={`${
           open ? "lg:w-72 md:w-50 sm:w-30" : "w-20"
         } fixed top-0 left-0 h-screen flex flex-col bg-[#1F2937] shadow-lg`}
-        onClick={()=> {if(showOption) setShowOption(false)}}
+        onClick={() => {
+          if (showOption) setShowOption(false);
+        }}
       >
         {/* Open/Close Button */}
         <div className="text-white mt-2 mr-2" onClick={toggleSideBar}>
@@ -72,7 +77,11 @@ export const Dashboard = () => {
           )}
         </div>
 
-<h1 className={`${!open?"text-xs":"text-xl sm:text-2xl md:text-3xl font-semibold"}  text-blue-600 text-center mb-4 uppercase tracking-tight border-b-2 border-blue-600 pb-1 transition-all duration-200 hover:text-blue-400 text-center`}>
+        <h1
+          className={`${
+            !open ? "text-xs" : "text-xl sm:text-2xl md:text-3xl font-semibold"
+          }  text-blue-600 text-center mb-4 uppercase tracking-tight border-b-2 border-blue-600 pb-1 transition-all duration-200 hover:text-blue-400 text-center`}
+        >
           Library Management Dashboard
         </h1>
 
@@ -97,7 +106,7 @@ export const Dashboard = () => {
                 icon={<IoMdAdd />}
                 title="Add Book"
                 path="addbook"
-                        role={user && user.roleName}
+                role={user && user.roleName}
               />
             )}
 
@@ -138,8 +147,6 @@ export const Dashboard = () => {
                 />
               </>
             )}
-
-            
           </ul>
         </div>
 
@@ -185,7 +192,7 @@ export const Dashboard = () => {
                   <ul>
                     <li
                       className="px-4 py-2 cursor-pointer hover:bg-gray-300"
-                      // onClick={handleViewProfile}
+                      onClick={handleViewProfile}
                     >
                       View Profile
                     </li>

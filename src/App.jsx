@@ -1,4 +1,8 @@
-import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+} from "react-router-dom";
 import { Dashboard } from "./components/Dashboard/Dashboard";
 import "./index.css";
 import { RootLayout } from "./components/Root/RootLayout";
@@ -21,6 +25,7 @@ import { AddBook } from "./pages/AddBook";
 import { AddTeacher } from "./pages/AddTeacher";
 import { AddDepartment } from "./pages/AddDepartment";
 import { Departments } from "./pages/Departments";
+import { ViewProfile } from "./pages/ViewProfile";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -37,7 +42,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout />,
-    loader:checkAuth,
+    loader: checkAuth,
     children: [
       {
         index: true,
@@ -50,38 +55,80 @@ const router = createBrowserRouter([
       {
         path: "/students",
         // element: <Students />,
-        element:( <ProtectedRoute element={<Students />} allowedRoles={["ROLE_LIBRARIAN"]} />),
+        element: (
+          <ProtectedRoute
+            element={<Students />}
+            allowedRoles={["ROLE_LIBRARIAN"]}
+          />
+        ),
       },
       {
         path: "/teachers",
         // element: <Teachers />,
-        element:( <ProtectedRoute element={<Teachers />} allowedRoles={["ROLE_LIBRARIAN"]} />),
+        element: (
+          <ProtectedRoute
+            element={<Teachers />}
+            allowedRoles={["ROLE_LIBRARIAN"]}
+          />
+        ),
       },
       {
-        path:"/addbook",
+        path: "/addbook",
         // element:<AddBook/>
-        element:( <ProtectedRoute element={<AddBook />} allowedRoles={["ROLE_LIBRARIAN"]} />),
+        element: (
+          <ProtectedRoute
+            element={<AddBook />}
+            allowedRoles={["ROLE_LIBRARIAN"]}
+          />
+        ),
       },
       {
-        path:"/addstudent",
+        path: "/addstudent",
         // element:<AddStudent/>
-        element:( <ProtectedRoute element={<AddStudent />} allowedRoles={["ROLE_LIBRARIAN"]} />),
-      }
-      ,
+        element: (
+          <ProtectedRoute
+            element={<AddStudent />}
+            allowedRoles={["ROLE_LIBRARIAN"]}
+          />
+        ),
+      },
       {
-        path:"/addteacher",
+        path: "/addteacher",
         // element:<AddTeacher/>
-        element:( <ProtectedRoute element={<AddTeacher />} allowedRoles={["ROLE_LIBRARIAN"]} />),
-      }
-      ,{
-        path:"/adddepartment",
-        element:(<ProtectedRoute element={<AddDepartment/>} allowedRoles={["ROLE_LIBRARIAN"]}/>)
-      }
-      ,{
-        path:"/departments",
-        element:(<ProtectedRoute element={<Departments/>} allowedRoles={["ROLE_LIBRARIAN"]}/>)
-      }
-     
+        element: (
+          <ProtectedRoute
+            element={<AddTeacher />}
+            allowedRoles={["ROLE_LIBRARIAN"]}
+          />
+        ),
+      },
+      {
+        path: "/adddepartment",
+        element: (
+          <ProtectedRoute
+            element={<AddDepartment />}
+            allowedRoles={["ROLE_LIBRARIAN"]}
+          />
+        ),
+      },
+      {
+        path: "/departments",
+        element: (
+          <ProtectedRoute
+            element={<Departments />}
+            allowedRoles={["ROLE_LIBRARIAN"]}
+          />
+        ),
+      },
+      {
+        path: "/viewprofile",
+        element: (
+          <ProtectedRoute
+            element={<ViewProfile />}
+            allowedRoles={["ROLE_LIBRARIAN"]}
+          />
+        ),
+      },
     ],
   },
   {
@@ -90,9 +137,9 @@ const router = createBrowserRouter([
   },
 
   {
-    path:"unauthorized",
-    element:<Unauthorized/>
-  }
+    path: "unauthorized",
+    element: <Unauthorized />,
+  },
   // ,{
   //   path:"logout",
   //   element:<Logout/>
@@ -100,7 +147,6 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  
   return (
     <QueryClientProvider client={queryClient}>
       {/* <AuthProvider> */}

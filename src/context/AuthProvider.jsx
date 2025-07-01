@@ -43,11 +43,12 @@ export const AuthProvider = ({ children }) => {
 
   if (isError) {
     console.error(error); // Handle error properly
-    return <div>Error fetching role!</div>;
+    // return <div>Error fetching role!</div>;
+    navigate("/login");
   }
 
   return (
-    <AuthContext.Provider value={{ userRole }}>
+    <AuthContext.Provider value={{ userRole,user }}>
       {children}
     </AuthContext.Provider>
   );
