@@ -6,6 +6,8 @@ export const commonApi = async ({
   isLogin,
   data,
   pageNumber,
+  isQueryParam,
+  paramString
 }) => {
   console.log("Page number",pageNumber);
   
@@ -14,7 +16,7 @@ export const commonApi = async ({
     let response;
     switch (method) {
       case "POST":
-        response = await fetch(path, {
+        response = await fetch(isQueryParam?path+'?'+paramString+'='+data:path, {
           method: method ,
           headers: {
             "Content-Type": "application/json",

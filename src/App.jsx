@@ -125,7 +125,7 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute
             element={<ViewProfile />}
-            allowedRoles={["ROLE_LIBRARIAN"]}
+            allowedRoles={["ROLE_LIBRARIAN","ROLE_STUDENT","ROLE_TEACHER"]}
           />
         ),
       },

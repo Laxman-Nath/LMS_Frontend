@@ -25,3 +25,6 @@ export const ADD_DEPT = BASE_URL + LIBRARIAN + "/addept";
 export const VIEW_ALL_DEPTS = BASE_URL + LIBRARIAN + "/getalldepts";
 export const UPDATE_DEPT = BASE_URL + LIBRARIAN + "/updatedept";
 export const DELETE_DEPT = BASE_URL + LIBRARIAN + "/deletedept";
+
+
+export const BORROW_BOOK=BASE_URL+USER+"/borrowbook";
