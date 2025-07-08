@@ -28,3 +28,4 @@ export const DELETE_DEPT = BASE_URL + LIBRARIAN + "/deletedept";
 
 
 export const BORROW_BOOK=BASE_URL+USER+"/borrowbook";
+export const RETURN_BOOK=BASE_URL+USER+"/returnbook";

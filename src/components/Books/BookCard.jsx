@@ -1,15 +1,28 @@
 import { useBorrowBook } from "../../hooks/queries/Book/useBorrowBook";
-import { BORROW_BOOK } from "../../utils/Routes";
+import { useReturnBook } from "../../hooks/queries/Book/useReturnBook";
+import { BORROW_BOOK, RETURN_BOOK } from "../../utils/Routes";
 
 /* eslint-disable react/prop-types */
 export const BookCard = ({ books }) => {
   console.log("Books inside card", books);
   const { borrowbook, isPending, isError } = useBorrowBook();
   const handleBorrowBook = (bookId) => {
-
     borrowbook({
       data: bookId,
       path: BORROW_BOOK,
+      isLogin: false,
+      pageNumber: null,
+      method: "POST",
+      isQueryParam: true,
+      paramString: "bookId",
+    });
+  };
+
+  const { returnBook, isPending, isError } = useReturnBook();
+  const handleReturnBook = (bookId) => {
+    returnBook({
+      data: bookId,
+      path: RETURN_BOOK,
       isLogin: false,
       pageNumber: null,
       method: "POST",
