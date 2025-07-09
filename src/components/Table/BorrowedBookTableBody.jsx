@@ -1,7 +1,20 @@
+import { RETURN_BOOK } from "../../utils/Routes";
 import { EditDeleteButton } from "../EditDeleteButton";
 
 // eslint-disable-next-line react/prop-types
-export const BorrowedBookTableBody = ({ data, columnNames }) => {
+export const BorrowedBookTableBody = ({ data, columnNames,deleteApi,isPending }) => {
+   const handleReturnBook = (bookId) => {
+    console.log("bookid",bookId);
+      deleteApi({
+        data: bookId,
+        path: RETURN_BOOK,
+        isLogin: false,
+        pageNumber: null,
+        method: "PUT",
+        isQueryParam: true,
+        paramString: "bookId",
+      });
+    };
   console.log("Borrowebook inside body:", data);
   return (
     <tbody>
@@ -25,7 +38,8 @@ export const BorrowedBookTableBody = ({ data, columnNames }) => {
                 <EditDeleteButton
                   name="return"
                   onClick={() => {
-                    //   handleDelete(row);
+                      // eslint-disable-next-line react/prop-types
+                      handleReturnBook(row?.bookId);
                   }}
                 />
               )}

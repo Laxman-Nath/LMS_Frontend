@@ -23,7 +23,7 @@ export const Table = ({
       <table className="w-full text-left table-auto min-w-max">
         <TableHead columnNames={columnNamesForHead} />
         {isCaseOfBorrowedBooks ? (
-          <BorrowedBookTableBody data={data} columnNames={columnNamesForBody} />
+          <BorrowedBookTableBody data={data} columnNames={columnNamesForBody} isPending={isPending} deleteApi={deleteApi}/>
         ) : (
           <TableBody
             columnNames={columnNamesForBody}

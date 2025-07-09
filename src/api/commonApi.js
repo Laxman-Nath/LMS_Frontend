@@ -48,7 +48,7 @@ export const commonApi = async ({
         });
         break;
       case "PUT":
-        response = await fetch(path, {
+        response = await fetch(isQueryParam?path+'?'+paramString+'='+data:path, {
           method: method ,
           headers: {
             "Content-Type": "application/json",
