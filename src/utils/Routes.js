@@ -6,7 +6,7 @@ export const LOGIN = BASE_URL + "/login";
 export const GET_AUTHENTICATED_USER = BASE_URL + "/getauthenticateduser";
 
 export const ADD_BOOK = BASE_URL + LIBRARIAN + "/addbook";
-export const VIEW_ALL_BOOKS = BASE_URL +  "/getallbooks";
+export const VIEW_ALL_BOOKS = BASE_URL + "/getallbooks";
 export const VIEW_BOOK_BY_ID = BASE_URL + LIBRARIAN + "/getbookbyid";
 export const UPDATE_BOOK = BASE_URL + LIBRARIAN + "/updatebook";
 export const DELETE_BOOK = BASE_URL + LIBRARIAN + "/deletebook";
@@ -26,6 +26,7 @@ export const VIEW_ALL_DEPTS = BASE_URL + LIBRARIAN + "/getalldepts";
 export const UPDATE_DEPT = BASE_URL + LIBRARIAN + "/updatedept";
 export const DELETE_DEPT = BASE_URL + LIBRARIAN + "/deletedept";
 
-
-export const BORROW_BOOK=BASE_URL+USER+"/borrowbook";
-export const RETURN_BOOK=BASE_URL+USER+"/returnbook";
+export const BORROW_BOOK = BASE_URL + USER + "/borrowbook";
+export const RETURN_BOOK = BASE_URL + USER + "/returnbook";
+export const GET_ALL_BORROWED_BOOKS_OF_AUTH_USER =
+  BASE_URL + USER + "/getAllBorrowedBooks";

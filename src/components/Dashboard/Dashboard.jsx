@@ -35,6 +35,9 @@ export const Dashboard = () => {
   const handleViewProfile = () => {
     navigate("/viewprofile", { replace: "true" }, { state: { user: user } });
   };
+   const handleViewBorrowedBooks = () => {
+    navigate("/viewborrowedbooks", { replace: "true" });
+  };
   const logout = () => {
     removeToken();
     navigate("/login", { replace: true });
@@ -195,6 +198,12 @@ export const Dashboard = () => {
                       onClick={handleViewProfile}
                     >
                       View Profile
+                    </li>
+                     <li
+                      className="px-4 py-2 cursor-pointer hover:bg-gray-300"
+                      onClick={handleViewBorrowedBooks}
+                    >
+                      View BorrowedBooks
                     </li>
                     <li
                       className="px-4 py-2 cursor-pointer hover:bg-gray-300"

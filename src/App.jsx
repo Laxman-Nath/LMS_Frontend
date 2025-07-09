@@ -26,6 +26,7 @@ import { AddTeacher } from "./pages/AddTeacher";
 import { AddDepartment } from "./pages/AddDepartment";
 import { Departments } from "./pages/Departments";
 import { ViewProfile } from "./pages/ViewProfile";
+import { ViewBorrowedBooks } from "./pages/ViewBorrowedBooks";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -125,7 +126,16 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute
             element={<ViewProfile />}
-            allowedRoles={["ROLE_LIBRARIAN","ROLE_STUDENT","ROLE_TEACHER"]}
+            allowedRoles={["ROLE_LIBRARIAN", "ROLE_STUDENT", "ROLE_TEACHER"]}
+          />
+        ),
+      },
+      {
+        path: "/viewborrowedbooks",
+        element: (
+          <ProtectedRoute
+            element={<ViewBorrowedBooks />}
+            allowedRoles={["ROLE_STUDENT", "ROLE_TEACHER"]}
           />
         ),
       },
