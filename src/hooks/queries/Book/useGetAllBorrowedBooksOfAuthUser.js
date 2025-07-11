@@ -9,6 +9,7 @@ export const useGetAllBorrowedBooksOfAuthUser = () => {
     isPending,
     isError,
   } = useQuery({
+    queryKey:["borrowedBooks"],
     queryFn:()=> commonApi({pageNumber:null,path:`${GET_ALL_BORROWED_BOOKS_OF_AUTH_USER
         }`,isLogin:false,method:"GET",data:null}),
     onError: (error) => {
