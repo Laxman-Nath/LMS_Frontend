@@ -25,6 +25,7 @@ export const ViewBorrowedBooks = () => {
         "renewalDate",
         "fineAmount",
       ]}
+      
       data={borrowedBooks}
       isCaseOfBorrowedBooks={true}
       isPending={isReturnBookPending}
